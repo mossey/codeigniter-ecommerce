@@ -100,7 +100,7 @@ if ( ! function_exists('prefered_languages'))
 
 if ( ! function_exists('browser_data'))
 {
-    public static function browser_data()
+    function browser_data()
     {
         $u_agent = $_SERVER['HTTP_USER_AGENT'];
         $bname = 'Unknown';

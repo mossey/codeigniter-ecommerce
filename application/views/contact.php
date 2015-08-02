@@ -4,8 +4,8 @@
             <div class="col-sm-12">
                 <h2 class="title text-center">Contacteaza-<strong>ne</strong></h2>
 
-                <div id="gmap" class="contact-map" data-lat="<?php echo $general->lat; ?>"
-                     data-long="<?php echo $general->long; ?>">
+                <div id="gmap" class="contact-map" data-lat="<?php echo !empty($general->lat) ? $general->lat : ''; ?>"
+                     data-long="<?php echo !empty($general->long) ? $general->long : ''; ?>">
                 </div>
             </div>
         </div>
