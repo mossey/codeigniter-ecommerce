@@ -31,7 +31,7 @@
                     </div>
                     <div class="form-group">
                         <label>Pret *</label>
-                        <input type="text" name="price" required class="form-control" value="<?php echo !empty($product) ? $product->price : ''; ?>">
+                        <input type="text" name="price" required placeholder="e.g. 150 Lei" class="form-control" value="<?php echo !empty($product) ? $product->price : ''; ?>">
                     </div>
                     <div class="form-group">
                         <label>Imagine</label>

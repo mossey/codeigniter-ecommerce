@@ -43,12 +43,12 @@ class Product_model extends CI_Model {
         return $data;
     }
 
-    public function get_popular_products($limit = 20)
+    public function get_products_by_limit_and_order($limit = 20, $order_by = 'p.views', $order = 'asc')
     {
         $this->db->select('p.*, c.name as category_name');
         $this->db->from($this->table.' p');
         $this->db->join('categories c', 'p.category = c.id');
-        $this->db->order_by('p.views', 'desc');
+        $this->db->order_by('p.views', '$order');
         $this->db->limit($limit);
         $query = $this->db->get();
 
@@ -56,6 +56,12 @@ class Product_model extends CI_Model {
 
         return $data;
     }
+	
+	public function get_footer_pages()
+	{
+		$footer_pages = array();
+		$footer_pages['popular_products'] = $this->get_products_by_limit_and_order(5, '')
+	}
 
     public function get_data_by_id($id)
     {
@@ -106,6 +112,7 @@ class Product_model extends CI_Model {
         $this->active           = !empty($_POST['active']) ? $_POST['active'] : 0;
 
         $this->image = $this->upload();
+        if (empty($this->image)) $this->image = 'no-image.jpeg';
 
         $this->db->insert($this->table, $this);
     }
@@ -119,8 +126,6 @@ class Product_model extends CI_Model {
                 $name = substr(md5($name), 0, 3) . substr(time(), 0, 3) . '-' . strtolower($name);
 
                 $path = "uploads/";
-
-                @mkdir($path, 0777, true);
 
                 if (move_uploaded_file($tmp_name, $path . $name)) {
                     return $name;

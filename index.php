@@ -235,6 +235,11 @@ switch (ENVIRONMENT)
         @mkdir('cache');
     }
 
+    // the uploads folder for products, general
+    if ( ! is_dir('uploads')) {
+        @mkdir('uploads');
+		copy('assets/images/no-image.jpeg', 'uploads/no-image.jpeg');
+    }
 
 	// The path to the "application" folder
 	if (is_dir($application_folder))

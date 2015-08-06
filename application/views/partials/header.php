@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?php echo substr($language, 0, 2); ?>">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>Ansilvex</title>
+    <meta name="description" content="<?php echo !empty($general->about) ? $general->about : ''; ?>">
+    <title><?php echo !empty($general->logo_text) ? $general->logo_text : 'Frontend'; ?></title>
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="/assets/css/font-awesome.min.css" rel="stylesheet">
     <link href="/assets/css/prettyPhoto.css" rel="stylesheet">
@@ -24,11 +23,11 @@
 <header id="header">
     <div class="messages">
         <div class="message success added-to-cart">
-            <p>Produsul a fost adaugat cu succes.</p>
+            <p>Produsul a fost adaugat in cos cu succes.</p>
         </div>
 
         <div class="message success removed-from-cart">
-            <p>Produsul a fost sters cu succes.</p>
+            <p>Produsul a fost sters din cos cu succes.</p>
         </div>
 
         <?php if ($this->session->flashdata('success')) { ?>

@@ -10,7 +10,7 @@
                     <div class="col-sm-5">
                         <?php if (!empty($product->image)) { ?>
                             <div class="view-product">
-                                <img src="<?php echo site_url('img.php?src=uploads/'.$product->image.'&w=768'); ?>" alt="<?php echo $product->name.' | '.$general->logo_text; ?>" />
+                                <img src="<?php echo site_url('img.php?src=uploads/'.$product->image.'&w=330&h=380'); ?>" alt="<?php echo $product->name; ?>" />
                             </div>
                         <?php } ?>
                     </div>
@@ -20,7 +20,7 @@
                             <p>Vizualizari: <?php echo $product->views; ?></p>
 
                             <span style="display:block">
-                                <span style="float:none"><?php echo $product->price; ?> Lei / bucata</span>
+                                <span style="float:none"><?php echo $product->price; ?></span>
                             </span>
                             <span style="margin-top:5px">
                                 <label style="font-size:22px">Contitatea:</label>
@@ -90,8 +90,8 @@
 
                                         <?php if (empty($user)) { ?>
                                             <span>
-											<input type="text" placeholder="<?php echo lang('msg_name'); ?>"/>
-											<input type="email" placeholder="<?php echo lang('msg_email'); ?>"/>
+											<input type="text" name="name" placeholder="<?php echo lang('msg_name'); ?>"/>
+											<input type="email" name="email" placeholder="<?php echo lang('msg_email'); ?>"/>
 										</span>
                                         <?php } ?>
 

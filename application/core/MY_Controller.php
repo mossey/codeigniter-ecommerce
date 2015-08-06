@@ -39,7 +39,8 @@ class Frontend extends CI_Controller {
                 }
             }
         }
-
+		$session_language = $this->session->userdata('site_lang');
+		$this->data['language'] = !empty($session_language) ? $session_language : $this->config->item('language');
         $this->data['general'] = $this->general_model->get_data();
         $this->data['categories'] = $this->category_model->get_data_with_products();
         $this->data['pages'] = $this->page_model->get_data();
