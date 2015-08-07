@@ -48,7 +48,29 @@ class Product_model extends CI_Model {
         $this->db->select('p.*, c.name as category_name');
         $this->db->from($this->table.' p');
         $this->db->join('categories c', 'p.category = c.id');
-        $this->db->order_by('p.views', '$order');
+        $this->db->order_by('p.views', $order);
+        $this->db->limit($limit);
+        $query = $this->db->get();
+
+        $data = $query->result();
+
+        return $data;
+    }
+
+    public function get_popular_products($limit = 20) {
+        return $this->get_products_by_limit_and_order($limit, 'p.views', 'desc');
+    }
+
+    public function get_newest_products($limit = 20) {
+        return $this->get_products_by_limit_and_order($limit, 'p.id');
+    }
+
+    public function get_popular_categories($limit = 20) {
+        $this->db->select('c.*, COUNT(p.id) as products');
+        $this->db->from($this->table.' p');
+        $this->db->join('categories c', 'p.category = c.id');
+        $this->db->group_by("c.name");
+        $this->db->order_by("SUM(p.views) DESC");
         $this->db->limit($limit);
         $query = $this->db->get();
 
@@ -60,16 +82,44 @@ class Product_model extends CI_Model {
 	public function get_footer_pages()
 	{
 		$footer_pages = array();
-		$footer_pages['popular_products'] = $this->get_products_by_limit_and_order(5, '')
+        $footer_pages['popular_categories'] = $this->get_popular_categories(5);
+		$footer_pages['popular_products'] = $this->get_popular_products(5);
+		$footer_pages['newest_products'] = $this->get_newest_products(5);
+
+        return $footer_pages;
 	}
 
-    public function get_data_by_id($id)
+    public function get_data_by_id($id, $admin = false)
     {
         $query = $this->db->get_where($this->table, ['id' => $id]);
 
         $data = $query->result();
 
-        return end($data);
+        $product = end($data);
+
+        $categories = new Filter_relation_model();
+        $categories = $categories->get_by_product($product->id);
+
+        if ($admin) {
+            foreach ($categories as $category) {
+                foreach ($category as $filter) {
+                    $product->filters[$filter['filter_id']] = $filter;
+                }
+            }
+        } else {
+            foreach ($categories as $key => $category) {
+                $category_name = '';
+                $filter_names = array();
+
+                foreach ($category as $filter) {
+                    $category_name = $filter['category_name'];
+                    $filter_names[] = $filter['filter_name'];
+                }
+                $product->categories[$key] = array('category_name' => $category_name, 'filter_names' => $filter_names);
+            }
+        }
+
+        return $product;
     }
 
     public function update_views($id)
@@ -115,6 +165,10 @@ class Product_model extends CI_Model {
         if (empty($this->image)) $this->image = 'no-image.jpeg';
 
         $this->db->insert($this->table, $this);
+        $product_id = $this->db->insert_id();
+
+        $fr = new Filter_relation_model();
+        $fr->product_save($product_id);
     }
 
     public function upload()
@@ -147,5 +201,8 @@ class Product_model extends CI_Model {
         if (empty($this->image)) unset($this->image);
 
         $this->db->update($this->table, $this, "id = ".$_POST['id']);
+
+        $fr = new Filter_relation_model();
+        $fr->product_save($_POST['id']);
     }
 }

@@ -6,11 +6,11 @@
                     <div class="single-widget">
                         <h2>Categorii populare</h2>
                         <ul class="nav nav-pills nav-stacked">
-                            <li><a href="#">Absorbante</a></li>
-                            <li><a href="#">Servetele umede</a></li>
-                            <li><a href="#">Detergenti</a></li>
-                            <li><a href="#">Cadouri</a></li>
-                            <li><a href="#">Scutece</a></li>
+                            <?php if (!empty($footer_pages['popular_categories'])) { ?>
+                                <?php foreach ($footer_pages['popular_categories'] as $popular_category) { ?>
+                                    <li><a href="<?php echo site_url('categorie/' . url_title($popular_category->name) . '-' . $popular_category->id); ?>"><?php echo $popular_category->name; ?> (<?php echo $popular_category->products; ?>)</a></li>
+                                <?php } ?>
+                            <?php } ?>
                         </ul>
                     </div>
                 </div>
@@ -18,11 +18,11 @@
                     <div class="single-widget">
                         <h2>Produse populare</h2>
                         <ul class="nav nav-pills nav-stacked">
-                            <li><a href="#">Servetele umede</a></li>
-                            <li><a href="#">Scutece</a></li>
-                            <li><a href="#">Detergenti</a></li>
-                            <li><a href="#">Absorbante</a></li>
-                            <li><a href="#">Cadouri</a></li>
+                            <?php if (!empty($footer_pages['popular_products'])) { ?>
+                                <?php foreach ($footer_pages['popular_products'] as $popular_product) { ?>
+                                    <li><a href="<?php echo site_url(url_title($popular_product->name).'-'.$popular_product->id); ?>"><?php echo $popular_product->name; ?></a></li>
+                                <?php } ?>
+                            <?php } ?>
                         </ul>
                     </div>
                 </div>
@@ -30,11 +30,11 @@
                     <div class="single-widget">
                         <h2>Produse noi</h2>
                         <ul class="nav nav-pills nav-stacked">
-                            <li><a href="#">Detergenti</a></li>
-                            <li><a href="#">Absorbante</a></li>
-                            <li><a href="#">Servetele umede</a></li>
-                            <li><a href="#">Scutece</a></li>
-                            <li><a href="#">Cadouri</a></li>
+                            <?php if (!empty($footer_pages['newest_products'])) { ?>
+                                <?php foreach ($footer_pages['newest_products'] as $new_product) { ?>
+                                    <li><a href="<?php echo site_url(url_title($new_product->name).'-'.$new_product->id); ?>"><?php echo $new_product->name; ?></a></li>
+                                <?php } ?>
+                            <?php } ?>
                         </ul>
                     </div>
                 </div>
@@ -74,5 +74,10 @@
 <script src="/assets/js/price-range.js"></script>
 <script src="/assets/js/jquery.prettyPhoto.js"></script>
 <script src="/assets/js/main.js"></script>
+
+<?php if (!empty($general) && !empty($general->analytics)) { ?>
+    <?php echo $general->analytics; ?>
+<?php } ?>
+
 </body>
 </html>

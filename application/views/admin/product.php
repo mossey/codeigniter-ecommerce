@@ -1,3 +1,15 @@
+<style>
+    .product-filters-category {
+        background: #EFEFEF;
+        padding: 10px 20px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+    }
+    .product-filters-category .checkbox {
+        display: inline-block;
+        margin-right:25px;
+    }
+</style>
 <div class="row">
     <div class="col-lg-12">
         <form method="post" action="<?php echo site_url('admin/products/save'); ?>" enctype="multipart/form-data">
@@ -44,6 +56,26 @@
                                 In stoc
                             </label>
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Filtre</label>
+                        <?php if (!empty($filters)) { ?>
+                            <?php foreach ($filters as $category) { ?>
+                                <div class="product-filters-category">
+                                    <b><?php echo $category->name; ?></b><br>
+                                    <?php if (!empty($category->filters)) { ?>
+                                        <?php foreach ($category->filters as $filter) { ?>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" name="filters[]" value="<?php echo $filter->id; ?>" <?php echo (!empty($product) && !empty($product->filters) && !empty($product->filters[$filter->id])) ? 'checked' : ''; ?>>
+                                                    <?php echo $filter->name; ?>
+                                                </label>
+                                            </div>
+                                        <?php } ?>
+                                    <?php } ?>
+                                </div>
+                            <?php } ?>
+                        <?php } ?>
                     </div>
                 </div>
                 <footer class="panel-footer text-right bg-light lter">

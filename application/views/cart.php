@@ -98,7 +98,7 @@
                         <ul class="user_info">
                             <li class="single_field zip-field">
                                 <label>Nume * :</label>
-                                <input type="text" name="name" required>
+                                <input type="text" name="name" value="<?php echo !empty($user->name) ? $user->name : ''; ?>" required>
                             </li>
                             <li class="single_field zip-field">
                                 <label>Email * :</label>

@@ -33,10 +33,9 @@
                                 </button>
                             </span>
                             <p><b>Disponibilitate:</b> <?php echo $product->active ? 'In stoc' : 'Nu este in stoc'; ?></p>
-                            <?php if (!empty($filters)) { ?>
-                                <?php foreach ($filters as $filter) { ?>
-                                    <p><b><?php echo $filter->category_name; ?></b> <?php echo $filter->filter_name; ?>
-                                    </p>
+                            <?php if (!empty($product->categories)) { ?>
+                                <?php foreach ($product->categories as $category) { ?>
+                                    <p><b><?php echo $category['category_name']; ?></b> : <?php echo implode(', ', $category['filter_names']); ?></p>
                                 <?php } ?>
                             <?php } ?>
                         </div>
@@ -90,9 +89,9 @@
 
                                         <?php if (empty($user)) { ?>
                                             <span>
-											<input type="text" name="name" placeholder="<?php echo lang('msg_name'); ?>"/>
-											<input type="email" name="email" placeholder="<?php echo lang('msg_email'); ?>"/>
-										</span>
+                                                <input type="text" name="name" placeholder="<?php echo lang('msg_name'); ?>"/>
+                                                <input type="email" name="email" placeholder="<?php echo lang('msg_email'); ?>"/>
+										    </span>
                                         <?php } ?>
 
                                         <textarea name="message" placeholder="<?php echo lang('msg_message'); ?>"></textarea>

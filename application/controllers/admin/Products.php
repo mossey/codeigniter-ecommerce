@@ -8,6 +8,8 @@ class Products extends Admin {
     public function __construct()
     {
         parent::__construct();
+
+        $this->data['filters'] = $this->filter_model->get_all();
     }
 
     public function index()
@@ -28,7 +30,7 @@ class Products extends Admin {
 
     public function edit($id)
     {
-        $this->data['product'] = $this->product_model->get_data_by_id($id);
+        $this->data['product'] = $this->product_model->get_data_by_id($id, true);
 
         $this->load->view('admin/header', $this->data);
         $this->load->view('admin/product', $this->data);

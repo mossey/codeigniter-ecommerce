@@ -67,8 +67,8 @@
                     </div>
                     <div class="form-group">
                         <label>Google analytics</label>
-                        <textarea name="General[delivery]" class="form-control"
-                                  placeholder="Script Google Analytics"><?php echo !empty($general->analytics) ? $general->analytics : ''; ?></textarea>
+                        <textarea name="General[analytics]" class="form-control"
+                                  placeholder="Script Google Analytics (http://www.google.com/analytics/)"><?php echo !empty($general->analytics) ? $general->analytics : ''; ?></textarea>
                     </div>
                     <div class="form-group">
                         <label>Link Facebook</label>

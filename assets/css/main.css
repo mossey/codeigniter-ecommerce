@@ -137,7 +137,7 @@ a#scrollUp i{
 }
 
 .header-middle .container .row {
-  border-bottom: 1px solid #63A71B;
+  border-bottom: 1px solid #5C9E16;
   margin-left: 0;
   margin-right: 0;
   padding-bottom: 20px;
@@ -182,9 +182,13 @@ a#scrollUp i{
 
 
 .shop-menu ul li {
-	display:inline-block;
-  padding-left: 15px;
-  padding-right: 15px;
+  display: inline-block;
+  border-right: 1px solid #5C9E16;
+  margin-top: 5px;
+  padding: 5px 20px;
+}
+.shop-menu ul li:last-of-type {
+  border:none
 }
 
 .shop-menu ul li:last-child {
@@ -199,7 +203,6 @@ a#scrollUp i{
   font-weight: 300;
   padding: 0;
   padding-right: 0;
-  margin-top: 10px;
 }
 .shop-menu ul li a:hover {
     background:none;color:#fff
@@ -656,7 +659,8 @@ ul.sub-menu {
   right: 0;
 }
 
-.category-products {
+.category-products,
+.filters {
   border: 1px solid #F7F7F0;
   margin-bottom: 35px;
     padding: 10px 20px;
@@ -2533,7 +2537,27 @@ h2.title {
     margin-bottom:75px;
 }
 
-.category-products .cp-category {
+.filters {
+
+}
+.filters .filter-category {}
+.filters .filter-category h5 {
+  margin: 15px 0 0 0;
+}
+.filters .filter-category:first-of-type h5 {
+  margin-top: 10px
+}
+.filters .filter-category .filter-name {}
+.filters .filter-category .filter-name input {}
+.filters .filter-category .filter-name label {
+  display: inline-block;
+  margin: -4px 5px;
+  line-height: 32px;
+  font-size: 13px;
+}
+
+.category-products .cp-category,
+.filters .filter-category .filter-name {
     border-top: 1px solid #F7F7F0;
     padding-top: 3px;
     color: #696763;
@@ -2546,10 +2570,13 @@ h2.title {
 }
 
 .category-products .cp-category:hover,
-.category-products .cp-category.active {
+.category-products .cp-category.active,
+.filters .filter-category .filter-name:hover,
+.filters .filter-category .filter-name.active {
     color: #65AE17!important
 }
-.category-products .cp-category:first-of-type {
+.category-products .cp-category:first-of-type,
+.filters .filter-category .filter-name:first-of-type {
     border-top: 0;
 }
 
@@ -2619,4 +2646,8 @@ div#cursmdcursBox {
 
 .response-area .media-body {
   margin: 0 20px;
+}
+.language-li img {
+  height: 22px;
+  margin: -2px 5px 0 0;
 }

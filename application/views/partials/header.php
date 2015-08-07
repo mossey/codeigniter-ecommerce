@@ -89,34 +89,27 @@
             <div class="row">
                 <div class="col-sm-4">
                     <div class="logo pull-left">
-                        <a href="/">Ansilvex</a>
-                    </div>
-                    <div class="btn-group pull-right">
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
-                                Limba
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="<?php echo site_url('language/change/romanian'); ?>">Romana</a></li>
-                                <li><a href="<?php echo site_url('language/change/russian'); ?>">Rusa</a></li>
-                            </ul>
-                        </div>
+                        <a href="/"><?php echo !empty($general->logo_text) ? $general->logo_text : ''; ?></a>
                     </div>
                 </div>
                 <div class="col-sm-8">
                     <div class="shop-menu pull-right">
                         <ul class="nav navbar-nav">
-                            <li><a href="<?php echo site_url('profile'); ?>"><i class="fa fa-user"></i> Contul tau</a>
-                            </li>
-                            <li><a href="<?php echo site_url('cart'); ?>"><i class="fa fa-shopping-cart"></i> Cosul tau
-                                    <span
-                                        class="cart-items"><?php echo !empty($cart) ? '(' . count($cart) . ')' : ''; ?></span></a>
+                            <?php if ($language == 'romanian') { ?>
+                                <li class="language-li"><a href="<?php echo site_url('language/change/russian'); ?>"><img src="/assets/images/russia-flag.png" alt="" /> Rusa</a></li>
+                            <?php } else { ?>
+                                <li class="language-li"><a href="<?php echo site_url('language/change/romanian'); ?>"><img src="/assets/images/moldova-flag.png" alt="" /> Romana</a></li>
+                            <?php } ?>
+                            <li>
+                                <a href="<?php echo site_url('cart'); ?>">
+                                    <i class="fa fa-shopping-cart"></i> Cosul tau <span class="cart-items"><?php echo !empty($cart) ? '(' . count($cart) . ')' : ''; ?></span>
+                                </a>
                             </li>
                             <?php if (!empty($user)) { ?>
-                                <li><a href="<?php echo site_url('user'); ?>"><i class="fa fa-lock"></i> Profil</a></li>
+                                <li><a href="<?php echo site_url('user/profile'); ?>"><i class="fa fa-lock"></i> Profil</a></li>
+                                <li><a href="<?php echo site_url('user/logout'); ?>"><i class="fa fa-sign-out"></i> Iesire</a></li>
                             <?php } else { ?>
-                                <li><a href="<?php echo site_url('user/login'); ?>"><i class="fa fa-lock"></i> Logare / Inregistrare</a></li>
+                                <li><a href="<?php echo site_url('user/login'); ?>"><i class="fa fa-sign-in"></i> Logare / Inregistrare</a></li>
                             <?php } ?>
                         </ul>
                     </div>

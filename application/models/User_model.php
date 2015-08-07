@@ -60,9 +60,12 @@ class User_model extends CI_Model {
         $query = $this->db->get_where($this->table, ['email' => $_POST['email'], 'password' => sha1($_POST['password'])]);
         $result = $query->result();
 
-        if (!empty($result)) {
-            $this->session->set_userdata('user_id', end($result)->id);
+        $user = end($result);
+        if (!empty($user)) {
+            $this->session->set_userdata('user_id', $user->id);
+            return true;
         }
+        return false;
     }
 
     public function register()
@@ -80,11 +83,13 @@ class User_model extends CI_Model {
             $this->address          = $_POST['address'];
             $this->ip               = $this->input->ip_address();
 
-            $user = $this->db->insert($this->table, $this);
+            if ($this->db->insert($this->table, $this)) {
+                $this->session->set_userdata('user_id', $this->id);
 
-            $this->session->set_userdata('user_id', $user->id);
-
-            return true;
+                return true;
+            } else {
+                return false;
+            }
         }
     }
 }

@@ -30,6 +30,7 @@ class Products extends Frontend
 
     public function index($page = 0)
     {
+        $this->data['filters'] = $this->filter_relation_model->get_all();
 
         $this->data['config']["base_url"] = site_url('products');
         $this->data['config']["total_rows"] = $this->product_model->record_count();
@@ -49,6 +50,7 @@ class Products extends Frontend
 
     public function category($id, $page = 0)
     {
+        $this->data['filters'] = $this->filter_relation_model->get_all();
 
         $this->data['config']["base_url"] = site_url('products');
         $this->data['config']["total_rows"] = $this->product_model->record_count();

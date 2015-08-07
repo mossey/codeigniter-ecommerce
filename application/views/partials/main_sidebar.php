@@ -4,14 +4,37 @@
         <div class="category-products">
             <?php foreach ($categories as $category) { ?>
                 <?php if (!empty($category->products)) { ?>
-                    <a href="<?php echo site_url('categorie/' . url_title($category->name) . '-' . $category->id); ?>"
-                       class="cp-category <?php echo (!empty($main_category) && $main_category->id == $category->id) ? 'active' : ''; ?>"><span
-                            class="pull-right">(<?php echo $category->products; ?>
-                            )</span> <?php echo $category->name; ?></a>
+                    <a href="<?php echo site_url('categorie/' . url_title($category->name) . '-' . $category->id); ?>" class="cp-category <?php echo (!empty($main_category) && $main_category->id == $category->id) ? 'active' : ''; ?>">
+                        <span class="pull-right">(<?php echo $category->products; ?>)</span> <?php echo $category->name; ?>
+                    </a>
                 <?php } ?>
             <?php } ?>
         </div>
     <?php } ?>
+
+    <?php if (!empty($filters)) { ?>
+        <form method="post">
+            <br>
+            <br>
+            <h2>Filtre</h2>
+            <div class="filters">
+                <?php foreach ($filters as $category) { ?>
+                    <div class="filter-category">
+                        <h5><?php echo end($category)['category_name']; ?></h5>
+                        <?php foreach ($category as $filter) { ?>
+                            <div class="filter-name">
+                                <input type="checkbox" name="sidebar_filters[]" value="<?php echo $filter['filter_id']; ?>" id="filter-<?php echo $filter['filter_id']; ?>" />
+                                <label for="filter-<?php echo $filter['filter_id']; ?>"><?php echo $filter['filter_name']; ?></label>
+                            </div>
+                        <?php } ?>
+                    </div>
+                <?php } ?>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%;margin: -20px 0 40px 0;">Cauta</button>
+        </form>
+    <?php } ?>
+
 
     <script language="JavaScript" type="text/javascript" src="http://www.curs.md/ro/curs_provider/F7F7F0/260/595657"></script>
 

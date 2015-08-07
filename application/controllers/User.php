@@ -46,6 +46,12 @@ class User extends Frontend
         }
     }
 
+    public function logout()
+    {
+        $this->session->unset_userdata('user_id');
+        redirect('/');
+    }
+
     public function register()
     {
         if (!empty($_POST)) {

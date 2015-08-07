@@ -5,7 +5,7 @@ class Filter_category_model extends CI_Model {
     public $name;
     public $date;
 
-    private $table = 'filter_categories';
+    const TABLE = 'filter_categories';
 
     public function __construct()
     {
@@ -14,14 +14,14 @@ class Filter_category_model extends CI_Model {
 
     public function get_data()
     {
-        $query = $this->db->get($this->table);
+        $query = $this->db->get($this::TABLE);
 
         return $query->result();
     }
 
     public function get_data_by_id($id)
     {
-        $query = $this->db->get_where($this->table, ['id' => $id]);
+        $query = $this->db->get_where($this::TABLE, ['id' => $id]);
 
         $data = $query->result();
 
@@ -30,7 +30,7 @@ class Filter_category_model extends CI_Model {
 
     public function delete_by_id($id)
     {
-        $query = $this->db->delete($this->table, ['id' => $id]);
+        $query = $this->db->delete($this::TABLE, ['id' => $id]);
 
         return (boolean) $query;
     }
