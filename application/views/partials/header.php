@@ -23,11 +23,11 @@
 <header id="header">
     <div class="messages">
         <div class="message success added-to-cart">
-            <p>Produsul a fost adaugat in cos cu succes.</p>
+            <p><?php echo lang('msg_product_added'); ?></p>
         </div>
 
         <div class="message success removed-from-cart">
-            <p>Produsul a fost sters din cos cu succes.</p>
+            <p><?php echo lang('msg_product_removed'); ?></p>
         </div>
 
         <?php if ($this->session->flashdata('success')) { ?>
@@ -98,18 +98,18 @@
                             <?php if ($language == 'romanian') { ?>
                                 <li class="language-li"><a href="<?php echo site_url('language/change/russian'); ?>"><img src="/assets/images/russia-flag.png" alt="" /> Rusa</a></li>
                             <?php } else { ?>
-                                <li class="language-li"><a href="<?php echo site_url('language/change/romanian'); ?>"><img src="/assets/images/moldova-flag.png" alt="" /> Romana</a></li>
+                                <li class="language-li"><a href="<?php echo site_url('language/change/romanian'); ?>"><img src="/assets/images/moldova-flag.png" alt="" /> Румынский</a></li>
                             <?php } ?>
                             <li>
                                 <a href="<?php echo site_url('cart'); ?>">
-                                    <i class="fa fa-shopping-cart"></i> Cosul tau <span class="cart-items"><?php echo !empty($cart) ? '(' . count($cart) . ')' : ''; ?></span>
+                                    <i class="fa fa-shopping-cart"></i> <?php echo lang('msg_cart'); ?> <span class="cart-items"><?php echo !empty($cart) ? '(' . count($cart) . ')' : ''; ?></span>
                                 </a>
                             </li>
                             <?php if (!empty($user)) { ?>
-                                <li><a href="<?php echo site_url('user/profile'); ?>"><i class="fa fa-lock"></i> Profil</a></li>
-                                <li><a href="<?php echo site_url('user/logout'); ?>"><i class="fa fa-sign-out"></i> Iesire</a></li>
+                                <li><a href="<?php echo site_url('user/profile'); ?>"><i class="fa fa-lock"></i> <?php echo lang('msg_profile'); ?></a></li>
+                                <li><a href="<?php echo site_url('user/logout'); ?>"><i class="fa fa-sign-out"></i> <?php echo lang('msg_logout'); ?></a></li>
                             <?php } else { ?>
-                                <li><a href="<?php echo site_url('user/login'); ?>"><i class="fa fa-sign-in"></i> Logare / Inregistrare</a></li>
+                                <li><a href="<?php echo site_url('user/login'); ?>"><i class="fa fa-sign-in"></i> <?php echo lang('msg_enter'); ?></a></li>
                             <?php } ?>
                         </ul>
                     </div>
@@ -132,7 +132,7 @@
                     </div>
                     <div class="mainmenu pull-left">
                         <ul class="nav navbar-nav collapse navbar-collapse">
-                            <li><a href="<?php echo site_url('products'); ?>" >Produse</a></li>
+                            <li><a href="<?php echo site_url('products'); ?>" ><?php echo lang('msg_products'); ?></a></li>
 
                             <?php if (!empty($pages)) { ?>
                                 <?php foreach ($pages as $page) { ?>
@@ -142,13 +142,13 @@
                                 <?php } ?>
                             <?php } ?>
 
-                            <li><a href="<?php echo site_url('contact'); ?>">Contacteaza-ne</a></li>
+                            <li><a href="<?php echo site_url('contact'); ?>"><?php echo lang('msg_contact'); ?></a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="search_box pull-right">
-                        <input type="text" placeholder="Cauta..."/>
+                        <input type="text" placeholder="<?php echo lang('msg_search'); ?>..."/>
                     </div>
                 </div>
             </div>

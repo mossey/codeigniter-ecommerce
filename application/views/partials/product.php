@@ -8,7 +8,7 @@
                 <h2><?php echo $product->price; ?></h2>
                 <a href="<?php echo site_url(url_title($product->name).'-'.$product->id); ?>"><p><?php echo $product->name; ?></p></a>
                 <a data-id="<?php echo $product->id; ?>" class="btn btn-default add-to-cart"><i
-                        class="fa fa-shopping-cart"></i>Adauga in cos</a>
+                        class="fa fa-shopping-cart"></i><?php echo lang('msg_add_to_cart'); ?></a>
             </div>
         </div>
     </div>

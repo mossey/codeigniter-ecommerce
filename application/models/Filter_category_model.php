@@ -1,7 +1,6 @@
 <?php
 class Filter_category_model extends CI_Model {
 
-    public $id;
     public $name;
     public $date;
 

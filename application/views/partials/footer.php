@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-sm-3">
                     <div class="single-widget">
-                        <h2>Categorii populare</h2>
+                        <h2><?php echo lang('msg_popular_categories'); ?></h2>
                         <ul class="nav nav-pills nav-stacked">
                             <?php if (!empty($footer_pages['popular_categories'])) { ?>
                                 <?php foreach ($footer_pages['popular_categories'] as $popular_category) { ?>
@@ -16,7 +16,7 @@
                 </div>
                 <div class="col-sm-3">
                     <div class="single-widget">
-                        <h2>Produse populare</h2>
+                        <h2><?php echo lang('msg_popular_products'); ?></h2>
                         <ul class="nav nav-pills nav-stacked">
                             <?php if (!empty($footer_pages['popular_products'])) { ?>
                                 <?php foreach ($footer_pages['popular_products'] as $popular_product) { ?>
@@ -28,7 +28,7 @@
                 </div>
                 <div class="col-sm-3">
                     <div class="single-widget">
-                        <h2>Produse noi</h2>
+                        <h2><?php echo lang('msg_newest_products'); ?></h2>
                         <ul class="nav nav-pills nav-stacked">
                             <?php if (!empty($footer_pages['newest_products'])) { ?>
                                 <?php foreach ($footer_pages['newest_products'] as $new_product) { ?>
@@ -41,7 +41,7 @@
                 <?php if (!empty($general->about)) { ?>
                     <div class="col-sm-3">
                         <div class="single-widget">
-                            <h2>Despre Ansilvex</h2>
+                            <h2><?php echo lang('msg_about'); ?></h2>
 
                             <p><?php echo $general->about; ?></p>
                         </div>

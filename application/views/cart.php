@@ -3,8 +3,8 @@
         <div class="container">
             <div class="breadcrumbs">
                 <ol class="breadcrumb">
-                    <li><a href="<?php echo site_url('/'); ?>">Acasa</a></li>
-                    <li class="active">Cosul tau</li>
+                    <li><a href="<?php echo site_url('/'); ?>"><?php echo lang('msg_home'); ?></a></li>
+                    <li class="active"><?php echo lang('msg_cart'); ?></li>
                 </ol>
             </div>
             <?php if (!empty($products)) { ?>
@@ -12,11 +12,11 @@
                     <table class="table table-condensed">
                         <thead>
                         <tr class="cart_menu">
-                            <td class="image">Produs</td>
+                            <td class="image"><?php echo lang('msg_cart'); ?></td>
                             <td class="description"></td>
-                            <td class="price">Pret</td>
-                            <td class="quantity">Cantitate</td>
-                            <td class="total">Total</td>
+                            <td class="price"><?php echo lang('msg_price'); ?></td>
+                            <td class="quantity"><?php echo lang('msg_quantity'); ?></td>
+                            <td class="total"><?php echo lang('msg_total'); ?></td>
                             <td></td>
                         </tr>
                         </thead>
@@ -33,7 +33,7 @@
                                         <a href="<?php echo site_url(url_title($product->name) . '-' . $product->id); ?>"><?php echo $product->name; ?></a>
                                     </h4>
 
-                                    <p>Vizualizari: <?php echo $product->views; ?></p>
+                                    <p><?php echo lang('msg_views'); ?>: <?php echo $product->views; ?></p>
                                 </td>
                                 <td class="cart_price">
                                     <p><?php echo $product->price; ?> Lei</p>
@@ -84,67 +84,67 @@
                         <ul class="user_option">
                             <li>
                                 <input type="checkbox" name="prefer[email]" value="Email">
-                                <label>Email</label>
+                                <label><?php echo lang('msg_email'); ?></label>
                             </li>
                             <li>
                                 <input type="checkbox" name="prefer[telephone]" value="Telefon">
-                                <label>Telefon</label>
+                                <label><?php echo lang('msg_telephone'); ?></label>
                             </li>
                             <li>
                                 <input type="checkbox" name="prefer[message]" value="Mesaj">
-                                <label>Mesaj</label>
+                                <label><?php echo lang('msg_message'); ?></label>
                             </li>
                         </ul>
                         <ul class="user_info">
                             <li class="single_field zip-field">
-                                <label>Nume * :</label>
+                                <label><?php echo lang('msg_name'); ?> * :</label>
                                 <input type="text" name="name" value="<?php echo !empty($user->name) ? $user->name : ''; ?>" required>
                             </li>
                             <li class="single_field zip-field">
-                                <label>Email * :</label>
+                                <label><?php echo lang('msg_email'); ?> * :</label>
                                 <input type="email" name="email" required>
                             </li>
                             <li class="single_field zip-field">
-                                <label>Telefon * :</label>
+                                <label><?php echo lang('msg_telephone'); ?> * :</label>
                                 <input type="text" name="telephone" required>
                             </li>
                             <li class="single_field zip-field" style="width: 96%;">
                                 <br>
-                                <label>Adresa * :</label>
+                                <label><?php echo lang('msg_address'); ?> * :</label>
                                 <input type="text" name="address" required>
                             </li>
                         </ul>
                         <div style="margin: 20px 25px 15px 40px;">
-                            <label>Mesaj :</label>
+                            <label><?php echo lang('msg_message'); ?> :</label>
                             <textarea name="message"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-default check_out">Trimite comanda</button>
+                        <button type="submit" class="btn btn-default check_out"><?php echo lang('msg_send'); ?></button>
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="total_area">
                         <ul>
                             <?php if (!empty($general->address)) { ?>
-                                <li>Adresa <span><?php echo $general->address; ?></span></li>
+                                <li><?php echo lang('msg_address'); ?> <span><?php echo $general->address; ?></span></li>
                             <?php } ?>
 
                             <?php if (!empty($general->telephone)) { ?>
-                                <li>Telefon <span><?php echo $general->telephone; ?></span></li>
+                                <li><?php echo lang('msg_telephone'); ?> <span><?php echo $general->telephone; ?></span></li>
                             <?php } ?>
 
                             <?php if (!empty($general->mobile)) { ?>
-                                <li>Mobil <span><?php echo $general->mobile; ?></span></li>
+                                <li><?php echo lang('msg_mobile'); ?> <span><?php echo $general->mobile; ?></span></li>
                             <?php } ?>
 
                             <?php if (!empty($general->email)) { ?>
-                                <li>Email <span><?php echo $general->email; ?></span></li>
+                                <li><?php echo lang('msg_email'); ?> <span><?php echo $general->email; ?></span></li>
                             <?php } ?>
 
                             <?php if (!empty($general->delivery)) { ?>
-                                <li>Livrare <span><?php echo $general->delivery; ?></span></li>
+                                <li><?php echo lang('msg_delivery'); ?> <span><?php echo $general->delivery; ?></span></li>
                             <?php } ?>
 
-                            <li>Total <span class="total">N / A</span></li>
+                            <li><?php echo lang('msg_total'); ?> <span class="total">N / A</span></li>
                         </ul>
                     </div>
                 </div>

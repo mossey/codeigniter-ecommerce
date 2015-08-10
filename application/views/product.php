@@ -17,22 +17,22 @@
                     <div class="col-sm-7">
                         <div class="product-information">
                             <h2><?php echo $product->name; ?></h2>
-                            <p>Vizualizari: <?php echo $product->views; ?></p>
+                            <p><?php echo lang('msg_views'); ?>: <?php echo $product->views; ?></p>
 
                             <span style="display:block">
                                 <span style="float:none"><?php echo $product->price; ?></span>
                             </span>
                             <span style="margin-top:5px">
-                                <label style="font-size:22px">Contitatea:</label>
+                                <label style="font-size:22px"><?php echo lang('msg_quantity'); ?>:</label>
                                 <input type="text" value="1" class="quantity"/>
                                 <br>
                                 <button type="button" class="btn cart add-to-cart" data-id="<?php echo $product->id; ?>"
                                         style="color:#fff!important;font-size: 26px;margin: 5px 0 20px 0;">
                                     <i class="fa fa-shopping-cart"></i>
-                                    Adauga in cos
+                                    <?php echo lang('msg_add_to_cart'); ?>
                                 </button>
                             </span>
-                            <p><b>Disponibilitate:</b> <?php echo $product->active ? 'In stoc' : 'Nu este in stoc'; ?></p>
+                            <p><b><?php echo lang('msg_available'); ?>:</b> <?php echo $product->active ? lang('msg_available') : lang('msg_not_available'); ?></p>
                             <?php if (!empty($product->categories)) { ?>
                                 <?php foreach ($product->categories as $category) { ?>
                                     <p><b><?php echo $category['category_name']; ?></b> : <?php echo implode(', ', $category['filter_names']); ?></p>
@@ -45,13 +45,13 @@
                 <div class="category-tab shop-details-tab">
                     <div class="col-sm-12">
                         <ul class="nav nav-tabs">
-                            <li class="active"><a href="#details" data-toggle="tab">Detalii</a></li>
+                            <li class="active"><a href="#details" data-toggle="tab"><?php echo lang('msg_details'); ?></a></li>
 
                             <?php if (!empty($general->product_delivery)) { ?>
-                                <li><a href="#delivery" data-toggle="tab">Livrare</a></li>
+                                <li><a href="#delivery" data-toggle="tab"><?php echo lang('msg_delivery'); ?></a></li>
                             <?php } ?>
 
-                            <li><a href="#reviews" data-toggle="tab">Comentarii <?php echo !empty($comments) ? '('.count($comments).')' : ''; ?></a></li>
+                            <li><a href="#reviews" data-toggle="tab"><?php echo lang('msg_comments'); ?> <?php echo !empty($comments) ? '('.count($comments).')' : ''; ?></a></li>
                         </ul>
                     </div>
                     <div class="tab-content">
@@ -69,20 +69,20 @@
                                     <?php foreach ($comments as $comment) { ?>
                                         <div class="comment">
                                             <ul>
-                                                <li><a><i class="fa fa-user"></i><?php echo $comment->name; ?></a></li>
-                                                <li><a><i class="fa fa-clock-o"></i><?php echo date('H : i', strtotime($comment->date)); ?></a></li>
-                                                <li><a><i class="fa fa-calendar"></i><?php echo date('d M, Y', strtotime($comment->date)); ?></a></li>
+                                                <li><i class="fa fa-user"></i><?php echo $comment->name; ?></li>
+                                                <li><i class="fa fa-clock-o"></i><?php echo date('H : i', strtotime($comment->date)); ?></li>
+                                                <li><i class="fa fa-calendar"></i><?php echo date('d M, Y', strtotime($comment->date)); ?></li>
                                             </ul>
                                             <p><?php echo $comment->message; ?></p>
                                         </div>
                                     <?php } ?>
                                 <?php } else { ?>
-                                    <p>La moment nu sunt comentarii adaugate.</p>
+                                    <p><?php echo lang('msg_no_comments'); ?></p>
                                 <?php } ?>
                                 <br>
 
                                 <div class="add-comment">
-                                    <p><b>Adauga un comentariu</b></p>
+                                    <p><b><?php echo lang('msg_add_comment'); ?></b></p>
 
                                     <form action="<?php echo site_url('user/comment'); ?>" method="post">
                                         <input type="hidden" name="product_id" value="<?php echo $product->id; ?>" />

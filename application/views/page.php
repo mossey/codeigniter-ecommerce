@@ -6,7 +6,7 @@
             </div>
             <div class="col-sm-9">
                 <div class="blog-post-area">
-                    <h2 class="title text-center">Pagina</h2>
+                    <h2 class="title text-center"><?php echo lang('msg_page'); ?></h2>
 
                     <h3><?php echo $page->title; ?></h3>
 
@@ -29,7 +29,7 @@
                 </div>
 
                 <div class="response-area">
-                    <h2><?php echo !empty($comments) ? count($comments) : '0'; ?> Comentarii</h2>
+                    <h2><?php echo !empty($comments) ? count($comments) : '0'; ?> <?php echo lang('msg_comments'); ?></h2>
                     <ul class="media-list">
                         <?php if (!empty($comments)) { ?>
                             <?php foreach ($comments as $comment) { ?>
@@ -55,28 +55,28 @@
                             <div class="col-sm-12">
                                 <div class="text-area">
                                     <div class="blank-arrow">
-                                        <label>Mesajul tau</label>
+                                        <label><?php echo lang('msg_message'); ?></label>
                                     </div>
                                     <span>*</span>
                                     <textarea name="message" rows="5"></textarea>
-                                    <button tyoe="submit" class="btn btn-primary">Comenteaza</button>
+                                    <button type="submit" class="btn btn-primary"><?php echo lang('msg_submit'); ?></button>
                                 </div>
                             </div>
                         </div>
                     <?php } else { ?>
                         <div class="row">
                             <div class="col-sm-4">
-                                <h2>Lasa un comentariu</h2>
+                                <h2><?php echo lang('msg_add_comment'); ?></h2>
 
                                 <form>
                                     <div class="blank-arrow">
-                                        <label>Nume</label>
+                                        <label><?php echo lang('msg_name'); ?></label>
                                     </div>
                                     <span>*</span>
                                     <input type="text" name="name" required>
 
                                     <div class="blank-arrow">
-                                        <label>Email</label>
+                                        <label><?php echo lang('msg_email'); ?></label>
                                     </div>
                                     <span>*</span>
                                     <input type="text" name="email" required>
@@ -85,11 +85,11 @@
                             <div class="col-sm-8">
                                 <div class="text-area">
                                     <div class="blank-arrow">
-                                        <label>Mesajul tau</label>
+                                        <label><?php echo lang('msg_message'); ?></label>
                                     </div>
                                     <span>*</span>
                                     <textarea name="message" rows="5" required></textarea>
-                                    <button tyoe="submit" class="btn btn-primary">Comenteaza</button>
+                                    <button tyoe="submit" class="btn btn-primary"><?php echo lang('msg_submit'); ?></button>
                                 </div>
                             </div>
                         </div>

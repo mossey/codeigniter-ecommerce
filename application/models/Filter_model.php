@@ -1,7 +1,6 @@
 <?php
 class Filter_model extends CI_Model {
 
-    public $id;
     public $filter_category;
     public $name;
     public $date;
@@ -38,23 +37,30 @@ class Filter_model extends CI_Model {
 
     public function insert_all()
     {
-        $this->db->truncate(Filter_category_model::TABLE);
-        $this->db->truncate($this::TABLE);
-
-        foreach ($_POST['filters'] as $key => $c) {
+        foreach ($_POST['filters'] as $c) {
             if (!empty($c)) {
                 $c_obj = new Filter_category_model();
                 $c_obj->name = $c['name'];
-                $c_obj->db->insert($c_obj::TABLE, $c_obj);
-
-                $filter_category_id = $c_obj->db->insert_id();
+                if (!empty($c['id'])) {
+                    $c_obj->db->where('id', $c['id']);
+                    $c_obj->db->update($c_obj::TABLE, $c_obj);
+                    $filter_category_id = $c['id'];
+                } else {
+                    $c_obj->db->insert($c_obj::TABLE, $c_obj);
+                    $filter_category_id = $c_obj->db->insert_id();
+                }
 
                 if (!empty($c['filters'])) {
                     foreach ($c['filters'] as $f) {
                         $f_obj = new Filter_model();
                         $f_obj->filter_category = $filter_category_id;
-                        $f_obj->name = $f;
-                        $f_obj->db->insert($f_obj::TABLE, $f_obj);
+                        $f_obj->name = $f['name'];
+                        if (!empty($f['id'])) {
+                            $f_obj->db->where('id', $f['id']);
+                            $f_obj->db->update($f_obj::TABLE, $f_obj);
+                        } else {
+                            $f_obj->db->insert($f_obj::TABLE, $f_obj);
+                        }
                     }
                 }
             }

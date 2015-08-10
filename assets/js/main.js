@@ -123,7 +123,7 @@ $(document).ready(function(){
 			$input = $up.parents('.cart_quantity_button').find('input'),
 			current_quantity = parseInt($input.val()),
 			$tr = $input.parents('tr'),
-			price = $tr.data('price'),
+			price = parseInt($tr.data('price')),
 			new_quantity = current_quantity + 1,
 			product_total = price * new_quantity;
 
@@ -137,7 +137,7 @@ $(document).ready(function(){
 			$input = $up.parents('.cart_quantity_button').find('input'),
 			current_quantity = parseInt($input.val()),
 			$tr = $input.parents('tr'),
-			price = $tr.data('price'),
+			price = parseInt($tr.data('price')),
 			new_quantity = current_quantity - 1,
 			product_total = price * new_quantity;
 

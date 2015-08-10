@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-sm-4 col-sm-offset-1">
                 <div class="login-form">
-                    <h2>Logare</h2>
+                    <h2><?php echo lang('msg_login'); ?></h2>
                     <form action="<?php echo site_url('user/login'); ?>" method="post">
                         <input type="email" name="email" placeholder="Email" />
                         <input type="password" name="password" placeholder="Parola" />
@@ -16,7 +16,7 @@
                 </div>
             </div>
             <div class="col-sm-1">
-                <h2 class="or">Ori</h2>
+                <h2 class="or"><?php echo lang('msg_or'); ?></h2>
             </div>
             <div class="col-sm-4">
                 <div class="signup-form">

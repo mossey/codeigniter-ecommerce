@@ -1,3 +1,6 @@
+cache/
+uploads/
+
 /vendor
 /node_modules
 Homestead.yaml

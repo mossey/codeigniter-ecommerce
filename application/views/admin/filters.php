@@ -34,12 +34,16 @@
                                 <div class="filter-category" data-key="<?php echo $key; ?>">
                                     <h5 class="category-title">Categorie</h5>
                                     <input type="text" name="filters[<?php echo $key; ?>][name]" class="form-control" required placeholder="Categorie pentru filtre (ex: Brand, Tip, Culoara)" value="<?php echo $filter_category->name; ?>" />
+                                    <input type="hidden" name="filters[<?php echo $key; ?>][id]" value="<?php echo $filter_category->id; ?>" />
 
                                     <h5 class="filters-title">Filtre</h5>
                                     <div class="fc-filters">
                                         <?php if (!empty($filter_category->filters)) { ?>
-                                            <?php foreach ($filter_category->filters as $filter) { ?>
-                                                <input type="text" name="filters[<?php echo $key; ?>][filters][]" class="form-control" required placeholder="Nume filtru (ex: Gillete, Pachet, Galben)" value="<?php echo $filter->name; ?>" />
+                                            <?php foreach ($filter_category->filters as $filter_key => $filter) { ?>
+                                                <div class="fc-filter">
+                                                    <input type="text" name="filters[<?php echo $key; ?>][filters][<?php echo $filter_key; ?>][name]" class="form-control" required placeholder="Nume filtru (ex: Gillete, Pachet, Galben)" value="<?php echo $filter->name; ?>" />
+                                                    <input type="hidden" name="filters[<?php echo $key; ?>][filters][<?php echo $filter_key; ?>][id]" value="<?php echo $filter->id; ?>" />
+                                                </div>
                                             <?php } ?>
                                         <?php } ?>
                                     </div>
@@ -66,6 +70,7 @@
             '<div class="filter-category" data-key="'+filter_categories+'">' +
                 '<h5 class="category-title">Categorie</h5>'+
                 '<input type="text" name="filters['+filter_categories+'][name]" class="form-control" required placeholder="Categorie pentru filtre (ex: Brand, Tip, Culoara)" />'+
+                '<input type="hidden" name="filters['+filter_categories+'][id]"/>'+
                 '<h5 class="filters-title">Filtre</h5>'+
                 '<div class="fc-filters"></div>'+$('.add-filter-default').clone().show()[0].outerHTML+
             '</div>'+
@@ -75,9 +80,15 @@
     });
     $(document).on('click', '.add-filter', function(){
         var $filters = $(this).parents('.filter-category').find('.fc-filters'),
-            filter_category = $(this).parents('.filter-category').data('key');
+            filter_category = $(this).parents('.filter-category').data('key'),
+            product_key = $filters.find('.fc-filter').length;
 
-        $filters.append('<input type="text" name="filters['+filter_category+'][filters][]" class="form-control" required placeholder="Nume filtru (ex: Gillete, Pachet, Galben)" />');
+
+        $filters.append(
+            '<div class="fc-filter">' +
+            '<input type="text" name="filters['+filter_category+'][filters]['+product_key+'][name]" class="form-control" required placeholder="Nume filtru (ex: Gillete, Pachet, Galben)" />' +
+            '</div>'
+        );
 
         return false;
     });

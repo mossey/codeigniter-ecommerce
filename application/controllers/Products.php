@@ -26,21 +26,23 @@ class Products extends Frontend
         $this->data['config']["per_page"] = 20;
         $this->data['config']["uri_segment"] = 2;
         $this->data['config']["use_page_numbers"] = TRUE;
-    }
 
-    public function index($page = 0)
-    {
         $this->data['filters'] = $this->filter_relation_model->get_all();
-
-        $this->data['config']["base_url"] = site_url('products');
         $this->data['config']["total_rows"] = $this->product_model->record_count();
 
         $choice = $this->data['config']["total_rows"] / $this->data['config']["per_page"];
         $this->data['config']["num_links"] = round($choice);
 
+        $this->data['sidebar_filters'] = $this->input->get_post('sidebar_filters');
+    }
+
+    public function index($page = 0)
+    {
+        $this->data['config']["base_url"] = site_url('products');
+
         $this->pagination->initialize($this->data['config']);
 
-        $this->data['products'] = $this->product_model->fetch_products($this->data['config']["per_page"], $page);
+        $this->data['products'] = $this->product_model->fetch_products($this->data['config']["per_page"], $page, $this->data['sidebar_filters']);
         $this->data['links'] = $this->pagination->create_links();
 
         $this->load->view('partials/header', $this->data);
@@ -50,13 +52,8 @@ class Products extends Frontend
 
     public function category($id, $page = 0)
     {
-        $this->data['filters'] = $this->filter_relation_model->get_all();
 
-        $this->data['config']["base_url"] = site_url('products');
-        $this->data['config']["total_rows"] = $this->product_model->record_count();
-
-        $choice = $this->data['config']["total_rows"] / $this->data['config']["per_page"];
-        $this->data['config']["num_links"] = round($choice);
+        $this->data['config']["base_url"] = site_url('categories/'.$id);
 
         $this->pagination->initialize($this->data['config']);
 
@@ -73,7 +70,7 @@ class Products extends Frontend
     public function product($id)
     {
         $this->data['product'] = $this->product_model->get_data_by_id($id);
-        $this->data['comments'] = $this->comment_model->get_data_for(false, $this->data['product']->id);
+        $this->data['comments'] = $this->comment_model->get_data_for(null, $this->data['product']->id);
 
         $this->product_model->update_views($id);
 

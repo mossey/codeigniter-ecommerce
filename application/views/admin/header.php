@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
-    <title>Admin | Ansilvex</title>
+    <title>Admin</title>
     <meta name="description" content="app, web app, responsive, admin dashboard, admin, flat, flat ui, ui kit, off screen nav"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
     <link rel="stylesheet" href="/assets/admin/css/app.v2.css" type="text/css"/>
@@ -26,9 +26,9 @@
                         <li class="<?php echo in_array('products', $this->uri->segment_array()) ? 'active' : ''; ?>"><a href="<?php echo site_url('admin/products'); ?>"><span>Produse</span></a></li>
                         <li class="<?php echo in_array('orders', $this->uri->segment_array()) ? 'active' : ''; ?>"><a href="<?php echo site_url('admin/orders'); ?>"><span>Comenzi</span></a></li>
                         <li class="<?php echo in_array('pages', $this->uri->segment_array()) ? 'active' : ''; ?>"><a href="<?php echo site_url('admin/pages'); ?>"><span>Pagini</span></a></li>
-                        <li class="<?php echo in_array('pages', $this->uri->segment_array()) ? 'active' : ''; ?>"><a href="<?php echo site_url('admin/filters'); ?>"><span>Filtre</span></a></li>
-                        <li class="<?php echo in_array('pages', $this->uri->segment_array()) ? 'active' : ''; ?>"><a href="<?php echo site_url('admin/comments'); ?>"><span>Comentarii</span></a></li>
-                        <li class="<?php echo in_array('pages', $this->uri->segment_array()) ? 'active' : ''; ?>"><a href="<?php echo site_url('admin/newsletter'); ?>"><span>Newsletter</span></a></li>
+                        <li class="<?php echo in_array('filters', $this->uri->segment_array()) ? 'active' : ''; ?>"><a href="<?php echo site_url('admin/filters'); ?>"><span>Filtre</span></a></li>
+                        <li class="<?php echo in_array('comments', $this->uri->segment_array()) ? 'active' : ''; ?>"><a href="<?php echo site_url('admin/comments'); ?>"><span>Comentarii</span></a></li>
+                        <li class="<?php echo in_array('newsletter', $this->uri->segment_array()) ? 'active' : ''; ?>"><a href="<?php echo site_url('admin/newsletter'); ?>"><span>Newsletter</span></a></li>
                         <li class="confirm"><a href="<?php echo site_url('admin/users/logout'); ?>"><span>Iesire</span></a></li>
                     </ul>
                 </nav>
@@ -37,7 +37,7 @@
                     <a href="#" data-dismiss="alert" class="pull-right m-r-n-sm m-t-n-sm">
                         <i class="fa fa-times"></i>
                     </a>
-                    Salut, bine ai venit in admin pentru Ansilvex.
+                    Salut, bine ai venit in admin.
                 </div>
             </section>
         </section>

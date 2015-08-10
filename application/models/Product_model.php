@@ -10,7 +10,7 @@ class Product_model extends CI_Model {
     public $views;
     public $date;
 
-    private $table = 'products';
+    const TABLE = 'products';
 
     public function __construct()
     {
@@ -21,7 +21,7 @@ class Product_model extends CI_Model {
     public function get_data()
     {
         $this->db->select('p.*, c.name as category_name');
-        $this->db->from($this->table.' p');
+        $this->db->from($this::TABLE.' p');
         $this->db->join('categories c', 'p.category = c.id');
         $query = $this->db->get();
 
@@ -33,7 +33,7 @@ class Product_model extends CI_Model {
     public function get_data_by_category($id)
     {
         $this->db->select('p.*, c.name as category_name');
-        $this->db->from($this->table . ' p');
+        $this->db->from($this::TABLE . ' p');
         $this->db->join('categories c', 'p.category = c.id');
         $this->db->where('p.category', $id);
         $query = $this->db->get();
@@ -46,7 +46,7 @@ class Product_model extends CI_Model {
     public function get_products_by_limit_and_order($limit = 20, $order_by = 'p.views', $order = 'asc')
     {
         $this->db->select('p.*, c.name as category_name');
-        $this->db->from($this->table.' p');
+        $this->db->from($this::TABLE.' p');
         $this->db->join('categories c', 'p.category = c.id');
         $this->db->order_by('p.views', $order);
         $this->db->limit($limit);
@@ -67,7 +67,7 @@ class Product_model extends CI_Model {
 
     public function get_popular_categories($limit = 20) {
         $this->db->select('c.*, COUNT(p.id) as products');
-        $this->db->from($this->table.' p');
+        $this->db->from($this::TABLE.' p');
         $this->db->join('categories c', 'p.category = c.id');
         $this->db->group_by("c.name");
         $this->db->order_by("SUM(p.views) DESC");
@@ -91,7 +91,7 @@ class Product_model extends CI_Model {
 
     public function get_data_by_id($id, $admin = false)
     {
-        $query = $this->db->get_where($this->table, ['id' => $id]);
+        $query = $this->db->get_where($this::TABLE, ['id' => $id]);
 
         $data = $query->result();
 
@@ -124,31 +124,50 @@ class Product_model extends CI_Model {
 
     public function update_views($id)
     {
-        $query = $this->db->get_where($this->table, ['id' => $id]);
+        $query = $this->db->get_where($this::TABLE, ['id' => $id]);
         $result = $query->result();
         $data = end($result);
 
         $views = $data->views + 1;
 
-        $this->db->update($this->table, ['views' => $views], "id = " . $id);
+        $this->db->update($this::TABLE, ['views' => $views], "id = " . $id);
 
         return end($data);
     }
 
     public function record_count() {
-        return $this->db->count_all($this->table);
+        return $this->db->count_all($this::TABLE);
     }
 
-    public function fetch_products($limit, $start) {
+    public function fetch_filters_products($limit, $start, $filters) {
+        $this->db->select('p.*');
+        $this->db->from(Filter_relation_model::TABLE.' fr');
+
+        $this->db->join(Product_model::TABLE.' p', 'p.id = fr.product_id');
+
+        $this->db->where_in('fr.filter_id', $filters);
+        $this->db->group_by("p.id");
+
         $this->db->limit($limit, $start);
-        $query = $this->db->get($this->table);
+        $query = $this->db->get();
 
         return $query->result();
     }
 
+    public function fetch_products($limit, $start, $filters = array()) {
+        if (!empty($filters)) {
+            return $this->fetch_filters_products($limit, $start, $filters);
+        } else {
+            $this->db->limit($limit, $start);
+            $query = $this->db->get($this::TABLE);
+
+            return $query->result();
+        }
+    }
+
     public function delete_by_id($id)
     {
-        $query = $this->db->delete($this->table, ['id' => $id]);
+        $query = $this->db->delete($this::TABLE, ['id' => $id]);
 
         return (boolean) $query;
     }
@@ -164,7 +183,7 @@ class Product_model extends CI_Model {
         $this->image = $this->upload();
         if (empty($this->image)) $this->image = 'no-image.jpeg';
 
-        $this->db->insert($this->table, $this);
+        $this->db->insert($this::TABLE, $this);
         $product_id = $this->db->insert_id();
 
         $fr = new Filter_relation_model();
@@ -200,7 +219,7 @@ class Product_model extends CI_Model {
         $this->image = $this->upload();
         if (empty($this->image)) unset($this->image);
 
-        $this->db->update($this->table, $this, "id = ".$_POST['id']);
+        $this->db->update($this::TABLE, $this, "id = ".$_POST['id']);
 
         $fr = new Filter_relation_model();
         $fr->product_save($_POST['id']);

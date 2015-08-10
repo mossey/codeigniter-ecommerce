@@ -52,7 +52,7 @@
 
                 <?php if (!empty($popular_products)) { ?>
                     <div class="features_items">
-                        <h2 class="title text-center">Cele mai populare</h2>
+                        <h2 class="title text-center"><?php echo lang('msg_popular_products'); ?></h2>
                         <?php foreach ($popular_products as $product) { ?>
                             <?php $this->load->view('partials/product', ['product' => $product]); ?>
                         <?php } ?>

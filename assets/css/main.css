@@ -2542,10 +2542,10 @@ h2.title {
 }
 .filters .filter-category {}
 .filters .filter-category h5 {
-  margin: 15px 0 0 0;
+  margin: 15px 0 5px 0;
 }
 .filters .filter-category:first-of-type h5 {
-  margin-top: 10px
+  margin-top: 10px;
 }
 .filters .filter-category .filter-name {}
 .filters .filter-category .filter-name input {}
@@ -2558,15 +2558,17 @@ h2.title {
 
 .category-products .cp-category,
 .filters .filter-category .filter-name {
-    border-top: 1px solid #F7F7F0;
-    padding-top: 3px;
     color: #696763;
     font-family: 'Roboto', sans-serif;
     font-size: 15px;
     text-decoration: none;
     font-weight: 400;
     display: block;
-    padding: 7px 0;
+}
+
+.category-products .cp-category {
+  border-top: 1px solid #F7F7F0;
+  padding: 7px 0;
 }
 
 .category-products .cp-category:hover,
@@ -2651,3 +2653,17 @@ div#cursmdcursBox {
   height: 22px;
   margin: -2px 5px 0 0;
 }
+#reviews .comment {
+  background: #F0F0E9;
+  padding: 5px 10px;
+  border-radius: 5px;
+
+}
+#reviews .comment ul {background:none}
+#reviews .comment ul li {
+  display: inline-block;
+  font-size: 10px;
+  min-width: 57px;
+}
+#reviews .comment ul li i {margin-right:5px}
+#reviews .comment ul p {}
