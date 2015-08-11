@@ -24,6 +24,7 @@
                         <li class="<?php echo in_array('general', $this->uri->segment_array()) ? 'active' : ''; ?>"><a href="<?php echo site_url('admin/general'); ?>"><span>Date generale</span></a></li>
                         <li class="<?php echo in_array('categories', $this->uri->segment_array()) ? 'active' : ''; ?>"><a href="<?php echo site_url('admin/categories'); ?>"><span>Categorii</span></a></li>
                         <li class="<?php echo in_array('products', $this->uri->segment_array()) ? 'active' : ''; ?>"><a href="<?php echo site_url('admin/products'); ?>"><span>Produse</span></a></li>
+                        <li class="<?php echo in_array('offers', $this->uri->segment_array()) ? 'active' : ''; ?>"><a href="<?php echo site_url('admin/offers'); ?>"><span>Oferte</span></a></li>
                         <li class="<?php echo in_array('orders', $this->uri->segment_array()) ? 'active' : ''; ?>"><a href="<?php echo site_url('admin/orders'); ?>"><span>Comenzi</span></a></li>
                         <li class="<?php echo in_array('pages', $this->uri->segment_array()) ? 'active' : ''; ?>"><a href="<?php echo site_url('admin/pages'); ?>"><span>Pagini</span></a></li>
                         <li class="<?php echo in_array('filters', $this->uri->segment_array()) ? 'active' : ''; ?>"><a href="<?php echo site_url('admin/filters'); ?>"><span>Filtre</span></a></li>

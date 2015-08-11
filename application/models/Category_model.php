@@ -2,7 +2,8 @@
 class Category_model extends CI_Model {
 
     public $id;
-    public $name;
+    public $name_romanian;
+    public $name_russian;
     public $date;
 
     private $table = 'categories';
@@ -55,14 +56,15 @@ class Category_model extends CI_Model {
 
     public function insert()
     {
-        $this->name     = $_POST['name'];
+        $this->name_romanian     = $_POST['name_romanian'];
+        $this->name_russian     = $_POST['name_russian'];
 
         $this->db->insert($this->table, $this);
     }
 
     public function update()
     {
-        $this->name     = $_POST['name'];
+        $this->name_romanian    = $_POST['name_russian'];
 
         $this->db->update($this->table, $this, "id = ".$_POST['id']);
     }

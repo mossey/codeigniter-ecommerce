@@ -23,8 +23,8 @@
                         <?php foreach ($pages as $page) { ?>
                             <tr>
                                 <td><?php echo !empty($page->image) ? '<img height="25" src="' . site_url('img.php?src=uploads/' . $page->image) . '">' : ''; ?></td>
-                                <td><?php echo $page->title; ?></td>
-                                <td><?php echo character_limiter($page->content, 300); ?></td>
+                                <td><?php echo $page->title_romanian; ?></td>
+                                <td><?php echo character_limiter($page->content_romanian, 300); ?></td>
                                 <td><?php echo date('d M Y', strtotime($page->date)); ?></td>
                                 <td><a href="<?php echo site_url('admin/pages/edit/' . $page->id); ?>"
                                        class="btn btn-xs btn-info">Editeaza</a></td>

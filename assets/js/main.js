@@ -110,10 +110,14 @@ $(document).ready(function(){
 	remove_messages();
 
 	function total() {
-		var total = 0;
+		var total = 0,
+			delivery_free_from = $('.cart-info table').data('delivery-free-from');
+
 		$('tr').find('.cart_total_price').each(function () {
 			total += parseInt($(this).data('price'));
 		});
+
+
 
 		$('.total_area').find('.total').html(total + ' Lei');
 	}

@@ -89,7 +89,9 @@
             <div class="row">
                 <div class="col-sm-4">
                     <div class="logo pull-left">
-                        <a href="/"><?php echo !empty($general->logo_text) ? $general->logo_text : ''; ?></a>
+                        <a href="/">
+                            <img src="/assets/images/logo.png" style="max-width: 280px" alt="<?php echo !empty($general->logo_text) ? $general->logo_text : ''; ?>" />
+                        </a>
                     </div>
                 </div>
                 <div class="col-sm-8">
@@ -137,7 +139,7 @@
                             <?php if (!empty($pages)) { ?>
                                 <?php foreach ($pages as $page) { ?>
                                     <li>
-                                        <a href="<?php echo site_url(url_title($page->title) . '/' . $page->id); ?>"><?php echo $page->title; ?></a>
+                                        <a href="<?php echo site_url(url_title($page->{'title_'.$language}) . '/' . $page->id); ?>"><?php echo $page->{'title_'.$language}; ?></a>
                                     </li>
                                 <?php } ?>
                             <?php } ?>

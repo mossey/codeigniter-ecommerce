@@ -1,12 +1,17 @@
 <?php
 class Product_model extends CI_Model {
 
-    public $name;
-    public $description;
+    public $name_romanian;
+    public $name_russian;
+    public $description_romanian;
+    public $description_russian;
     public $category;
     public $price;
     public $image;
     public $active;
+    public $special_price;
+    public $special_content_romanian;
+    public $special_content_russian;
     public $views;
     public $date;
 
@@ -20,7 +25,7 @@ class Product_model extends CI_Model {
 
     public function get_data()
     {
-        $this->db->select('p.*, c.name as category_name');
+        $this->db->select('p.*, c.name_romanian as category_name_romanian, c.name_russian as category_name_russian');
         $this->db->from($this::TABLE.' p');
         $this->db->join('categories c', 'p.category = c.id');
         $query = $this->db->get();
@@ -32,7 +37,7 @@ class Product_model extends CI_Model {
 
     public function get_data_by_category($id)
     {
-        $this->db->select('p.*, c.name as category_name');
+        $this->db->select('p.*, c.name_romanian as category_name_romanian, c.name_russian as category_name_russian');
         $this->db->from($this::TABLE . ' p');
         $this->db->join('categories c', 'p.category = c.id');
         $this->db->where('p.category', $id);
@@ -45,7 +50,7 @@ class Product_model extends CI_Model {
 
     public function get_products_by_limit_and_order($limit = 20, $order_by = 'p.views', $order = 'asc')
     {
-        $this->db->select('p.*, c.name as category_name');
+        $this->db->select('p.*, c.name_romanian as category_name_romanian, c.name_russian as category_name_russian');
         $this->db->from($this::TABLE.' p');
         $this->db->join('categories c', 'p.category = c.id');
         $this->db->order_by('p.views', $order);
@@ -69,7 +74,7 @@ class Product_model extends CI_Model {
         $this->db->select('c.*, COUNT(p.id) as products');
         $this->db->from($this::TABLE.' p');
         $this->db->join('categories c', 'p.category = c.id');
-        $this->db->group_by("c.name");
+        $this->db->group_by("c.name_romanian");
         $this->db->order_by("SUM(p.views) DESC");
         $this->db->limit($limit);
         $query = $this->db->get();
@@ -174,10 +179,15 @@ class Product_model extends CI_Model {
 
     public function insert()
     {
-        $this->name             = $_POST['name'];
-        $this->description      = $_POST['description'];
+        $this->name_romanian             = $_POST['name_romanian'];
+        $this->name_russian             = $_POST['name_russian'];
+        $this->description_romanian      = $_POST['description_romanian'];
+        $this->description_russian      = $_POST['description_russian'];
         $this->price            = $_POST['price'];
         $this->category         = $_POST['category'];
+        $this->special_price         = $_POST['special_price'];
+        $this->special_content_romanian         = $_POST['special_content_romanian'];
+        $this->special_content_russian         = $_POST['special_content_russian'];
         $this->active           = !empty($_POST['active']) ? $_POST['active'] : 0;
 
         $this->image = $this->upload();
@@ -210,10 +220,15 @@ class Product_model extends CI_Model {
 
     public function update()
     {
-        $this->name             = $_POST['name'];
-        $this->description      = $_POST['description'];
+        $this->name_romanian             = $_POST['name_romanian'];
+        $this->name_russian             = $_POST['name_russian'];
+        $this->description_romanian      = $_POST['description_romanian'];
+        $this->description_russian     = $_POST['description_russian'];
         $this->price            = $_POST['price'];
         $this->category         = $_POST['category'];
+        $this->special_price         = $_POST['special_price'];
+        $this->special_content_romanian         = $_POST['special_content_romanian'];
+        $this->special_content_russian         = $_POST['special_content_russian'];
         $this->active           = !empty($_POST['active']) ? $_POST['active'] : 0;
 
         $this->image = $this->upload();

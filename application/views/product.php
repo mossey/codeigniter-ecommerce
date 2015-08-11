@@ -10,18 +10,26 @@
                     <div class="col-sm-5">
                         <?php if (!empty($product->image)) { ?>
                             <div class="view-product">
-                                <img src="<?php echo site_url('img.php?src=uploads/'.$product->image.'&w=330&h=380'); ?>" alt="<?php echo $product->name; ?>" />
+                                <img src="<?php echo site_url('img.php?src=uploads/'.$product->image.'&w=330&h=380'); ?>" alt="<?php echo $product->{'name_'.$language}; ?>" />
                             </div>
                         <?php } ?>
                     </div>
                     <div class="col-sm-7">
                         <div class="product-information">
-                            <h2><?php echo $product->name; ?></h2>
+                            <h2><?php echo $product->{'name_'.$language}; ?></h2>
                             <p><?php echo lang('msg_views'); ?>: <?php echo $product->views; ?></p>
 
+                            <?php if (!empty($product->special_price)) { ?>
                             <span style="display:block">
+                                <span style="float:none;font-size: 20px;text-decoration: line-through;"><?php echo $product->price; ?></span>
+                            </span>
+                            <span style="display:block;margin-top: -10px;font-size: 36px;font-weight: bold;color: #E34E31;"><?php echo $product->special_price; ?></span>
+                            <?php } else { ?>
+                                <span style="display:block">
                                 <span style="float:none"><?php echo $product->price; ?></span>
                             </span>
+                            <?php } ?>
+
                             <span style="margin-top:5px">
                                 <label style="font-size:22px"><?php echo lang('msg_quantity'); ?>:</label>
                                 <input type="text" value="1" class="quantity"/>
@@ -56,7 +64,7 @@
                     </div>
                     <div class="tab-content">
                         <div class="tab-pane fade active in" id="details">
-                            <p style="padding:0 20px 10px 20px"><?php echo $product->description; ?></p>
+                            <p style="padding:0 20px 10px 20px"><?php echo $product->{'description_'.$language}; ?></p>
                         </div>
 
                         <div class="tab-pane fade" id="delivery" >

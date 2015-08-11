@@ -9,7 +9,7 @@
             </div>
             <?php if (!empty($products)) { ?>
                 <div class="table-responsive cart_info">
-                    <table class="table table-condensed">
+                    <table class="table table-condensed" data-delivery-free-from="<?php echo !empty($general->delivery_free_from) ? $general->delivery_free_from : ''; ?>">
                         <thead>
                         <tr class="cart_menu">
                             <td class="image"><?php echo lang('msg_cart'); ?></td>
@@ -22,21 +22,22 @@
                         </thead>
                         <tbody>
                         <?php foreach ($products as $product) { ?>
+                            <?php $product->price = !empty($product->special_price) ? $product->special_price : $product->price; ?>
+
                             <tr data-price="<?php echo $product->price; ?>">
                                 <td class="cart_product">
-                                    <a href="<?php echo site_url(url_title($product->name) . '-' . $product->id); ?>"><img
-                                            src="<?php echo site_url('img.php?src=uploads/' . $product->image . '&h=130'); ?>"
-                                            alt=""></a>
+                                    <a href="<?php echo site_url(url_title($product->{'name_'.$language}) . '-' . $product->id); ?>"><img
+                                            src="<?php echo site_url('img.php?src=uploads/' . $product->image . '&h=130'); ?>" alt=""></a>
                                 </td>
                                 <td class="cart_description">
                                     <h4>
-                                        <a href="<?php echo site_url(url_title($product->name) . '-' . $product->id); ?>"><?php echo $product->name; ?></a>
+                                        <a href="<?php echo site_url(url_title($product->{'name_'.$language}) . '-' . $product->id); ?>"><?php echo $product->{'name_'.$language}; ?></a>
                                     </h4>
 
                                     <p><?php echo lang('msg_views'); ?>: <?php echo $product->views; ?></p>
                                 </td>
                                 <td class="cart_price">
-                                    <p><?php echo $product->price; ?> Lei</p>
+                                    <p><?php echo $product->price; ?></p>
                                 </td>
                                 <td class="cart_quantity">
                                     <div class="cart_quantity_button">
@@ -144,7 +145,7 @@
                                 <li><?php echo lang('msg_delivery'); ?> <span><?php echo $general->delivery; ?></span></li>
                             <?php } ?>
 
-                            <li><?php echo lang('msg_total'); ?> <span class="total">N / A</span></li>
+                            <li><?php echo lang('msg_total'); ?> <span class="delivery-free" style="font-weight: bold;color: #65AE17;margin-left: 8px;display:none" data-delivery="<?php echo !empty($general->delivery_free_from) ? '+ '.$general->delivery_free_from.' livrarea' : ''; ?>" data-free-delivery="+ livrarea gratisa"></span> <span class="total">N / A</span></li>
                         </ul>
                     </div>
                 </div>

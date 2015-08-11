@@ -20,7 +20,7 @@
                         <tbody>
                             <?php foreach ($categories as $category) { ?>
                                 <tr>
-                                    <td><?php echo $category->name; ?></td>
+                                    <td><?php echo $category->name_romanian; ?></td>
                                     <td><a href="#">N/A</a></td>
                                     <td><?php echo date('d M Y', strtotime($category->date)); ?></td>
                                     <td><a href="<?php echo site_url('admin/categories/edit/'.$category->id); ?>" class="btn btn-xs btn-info">Editeaza</a></td>

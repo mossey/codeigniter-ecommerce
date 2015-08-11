@@ -3,7 +3,8 @@ class Offer_model extends CI_Model {
 
     public $id;
     public $products;
-    public $description;
+    public $description_romanian;
+    public $description_russian;
     public $price;
     public $date;
 

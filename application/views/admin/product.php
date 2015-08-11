@@ -19,16 +19,24 @@
                     <?php if (!empty($product) && !empty($product->image)) { ?>
                         <img src="<?php echo site_url('img.php?src=uploads/'.$product->image); ?>" height="50" class="m-r-lg">
                     <?php } ?>
-                    <span class="h4"><?php echo !empty($product) ? $product->name : 'Nou produs'; ?></span>
+                    <span class="h4"><?php echo !empty($product) ? $product->name_romanian : 'Nou produs'; ?></span>
                 </header>
                 <div class="panel-body"><p class="text-muted"></p>
                     <div class="form-group">
-                        <label>Nume *</label>
-                        <input type="text" name="name" required class="form-control" value="<?php echo !empty($product) ? $product->name : ''; ?>">
+                        <label>Nume (romana) *</label>
+                        <input type="text" name="name_romanian"  required class="form-control" value="<?php echo !empty($product) ? $product->name_romanian : ''; ?>">
                     </div>
                     <div class="form-group">
-                        <label>Descriere</label>
-                        <textarea name="description" class="form-control"><?php echo !empty($product) ? $product->description : ''; ?></textarea>
+                        <label>Nume (rusa) *</label>
+                        <input type="text" name="name_russian" required class="form-control" value="<?php echo !empty($product) ? $product->name_russian : ''; ?>">
+                    </div>
+                    <div class="form-group">
+                        <label>Descriere (romana)</label>
+                        <textarea name="description_romanian" required class="form-control"><?php echo !empty($product) ? $product->description_romanian : ''; ?></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Descriere (rusa)</label>
+                        <textarea name="description_russian" required class="form-control"><?php echo !empty($product) ? $product->description_russian : ''; ?></textarea>
                     </div>
                     <div class="form-group">
                         <label>Categorie *</label>
@@ -36,7 +44,7 @@
                             <option value="">Alege o categorie</option>
                             <?php if (!empty($categories)) { ?>
                                 <?php foreach ($categories as $category) { ?>
-                                    <option value="<?php echo $category->id; ?>" <?php echo !empty($product) && $product->category == $category->id ? 'selected' : ''; ?> ><?php echo $category->name; ?></option>
+                                    <option value="<?php echo $category->id; ?>" <?php echo !empty($product) && $product->category == $category->id ? 'selected' : ''; ?> ><?php echo $category->name_romanian; ?></option>
                                 <?php } ?>
                             <?php } ?>
                         </select>
@@ -44,6 +52,18 @@
                     <div class="form-group">
                         <label>Pret *</label>
                         <input type="text" name="price" required placeholder="e.g. 150 Lei" class="form-control" value="<?php echo !empty($product) ? $product->price : ''; ?>">
+                    </div>
+                    <div class="form-group">
+                        <label>Pret special</label>
+                        <input type="text" name="special_price" placeholder="Rescrie pretul original" class="form-control" value="<?php echo !empty($product) ? $product->special_price : ''; ?>">
+                    </div>
+                    <div class="form-group">
+                        <label>Oferta speciala (romana)</label>
+                        <input type="text" name="special_content_romanian" placeholder="Apare text special (rosu)" class="form-control" value="<?php echo !empty($product) ? $product->special_content_romanian : ''; ?>">
+                    </div>
+                    <div class="form-group">
+                        <label>Oferta speciala (rusa)</label>
+                        <input type="text" name="special_content_russian" class="form-control" value="<?php echo !empty($product) ? $product->special_content_russian : ''; ?>">
                     </div>
                     <div class="form-group">
                         <label>Imagine</label>

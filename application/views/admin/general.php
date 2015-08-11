@@ -56,14 +56,13 @@
                                class="form-control" placeholder="" required>
                     </div>
                     <div class="form-group">
-                        <label>Livrarea (la finalizarea comenzii)</label>
-                        <textarea name="General[delivery]"
-                                  class="form-control"><?php echo !empty($general->delivery) ? $general->delivery : ''; ?></textarea>
+                        <label>Livrarea (pagina produsului)</label>
+                        <textarea name="General[delivery_product]"
+                               class="form-control"><?php echo !empty($general->product_delivery) ? $general->product_delivery : ''; ?></textarea>
                     </div>
                     <div class="form-group">
-                        <label>Livrarea (pagina produsului)</label>
-                        <textarea name="General[delivery]"
-                               class="form-control"><?php echo !empty($general->product_delivery) ? $general->product_delivery : ''; ?></textarea>
+                        <label>Livrarea (gratuit de la XX Lei)</label>
+                        <input type="text" name="General[delivery_free_from]" value="<?php echo !empty($general->delivery_free_from) ? $general->delivery_free_from : ''; ?>" class="form-control" />
                     </div>
                     <div class="form-group">
                         <label>Google analytics</label>

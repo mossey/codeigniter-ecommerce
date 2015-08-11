@@ -8,7 +8,7 @@
                         <ul class="nav nav-pills nav-stacked">
                             <?php if (!empty($footer_pages['popular_categories'])) { ?>
                                 <?php foreach ($footer_pages['popular_categories'] as $popular_category) { ?>
-                                    <li><a href="<?php echo site_url('categorie/' . url_title($popular_category->name) . '-' . $popular_category->id); ?>"><?php echo $popular_category->name; ?> (<?php echo $popular_category->products; ?>)</a></li>
+                                    <li><a href="<?php echo site_url('categorie/' . url_title($popular_category->{'name_'.$language}) . '-' . $popular_category->id); ?>"><?php echo $popular_category->{'name_'.$language}; ?> (<?php echo $popular_category->products; ?>)</a></li>
                                 <?php } ?>
                             <?php } ?>
                         </ul>
@@ -20,7 +20,7 @@
                         <ul class="nav nav-pills nav-stacked">
                             <?php if (!empty($footer_pages['popular_products'])) { ?>
                                 <?php foreach ($footer_pages['popular_products'] as $popular_product) { ?>
-                                    <li><a href="<?php echo site_url(url_title($popular_product->name).'-'.$popular_product->id); ?>"><?php echo $popular_product->name; ?></a></li>
+                                    <li><a href="<?php echo site_url(url_title($popular_product->{'name_'.$language}).'-'.$popular_product->id); ?>"><?php echo $popular_product->{'name_'.$language}; ?></a></li>
                                 <?php } ?>
                             <?php } ?>
                         </ul>
@@ -32,7 +32,7 @@
                         <ul class="nav nav-pills nav-stacked">
                             <?php if (!empty($footer_pages['newest_products'])) { ?>
                                 <?php foreach ($footer_pages['newest_products'] as $new_product) { ?>
-                                    <li><a href="<?php echo site_url(url_title($new_product->name).'-'.$new_product->id); ?>"><?php echo $new_product->name; ?></a></li>
+                                    <li><a href="<?php echo site_url(url_title($new_product->{'name_'.$language}).'-'.$new_product->id); ?>"><?php echo $new_product->{'name_'.$language}; ?></a></li>
                                 <?php } ?>
                             <?php } ?>
                         </ul>

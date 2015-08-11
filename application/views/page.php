@@ -8,7 +8,7 @@
                 <div class="blog-post-area">
                     <h2 class="title text-center"><?php echo lang('msg_page'); ?></h2>
 
-                    <h3><?php echo $page->title; ?></h3>
+                    <h3><?php echo $page->{'title_'.$language}; ?></h3>
 
                     <div class="single-blog-post">
                         <div class="post-meta">
@@ -24,7 +24,7 @@
                             <img src="" alt=""/>
                         <?php } ?>
 
-                        <p><?php echo nl2br($page->content); ?><p>
+                        <p><?php echo nl2br($page->{'content_'.$language}); ?><p>
                     </div>
                 </div>
 
@@ -47,7 +47,7 @@
                         <?php } ?>
                     </ul>
                 </div>
-                <form method="post" action="<?php echo site_url('user/comment'); ?>" class="replay-box">
+                <div class="replay-box">
                     <input type="hidden" name="page_id" value="<?php echo $page->id; ?>" />
 
                     <?php if (!empty($user)) { ?>
@@ -68,7 +68,7 @@
                             <div class="col-sm-4">
                                 <h2><?php echo lang('msg_add_comment'); ?></h2>
 
-                                <form>
+                                <form method="post" action="<?php echo site_url('user/comment'); ?>">
                                     <div class="blank-arrow">
                                         <label><?php echo lang('msg_name'); ?></label>
                                     </div>

@@ -25,9 +25,9 @@
                         <?php foreach ($products as $product) { ?>
                             <tr>
                                 <td><?php echo !empty($product->image) ? '<img height="25" src="'.site_url('img.php?src=uploads/'.$product->image).'">' : ''; ?></td>
-                                <td><?php echo $product->name; ?></td>
-                                <td><?php echo $product->description; ?></td>
-                                <td><?php echo $product->category_name; ?></td>
+                                <td><?php echo $product->name_romanian; ?></td>
+                                <td><?php echo $product->description_romanian; ?></td>
+                                <td><?php echo $product->category_name_romanian; ?></td>
                                 <td><?php echo $product->price; ?></td>
                                 <td><?php echo date('d M Y', strtotime($product->date)); ?></td>
                                 <td><?php echo $product->active == 1 ? '<span class="text-success">In stoc</span>' : '<span class="text-danger">Nu este in stoc</span>'; ?></td>

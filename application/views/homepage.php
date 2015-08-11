@@ -17,7 +17,7 @@
                             <div class="carousel-inner">
                                 <div class="item active">
                                     <div class="col-sm-6">
-                                        <h1><span>A</span>-nsilvex</h1>
+                                        <h1><?php echo $general->logo_text; ?></h1>
                                         <h2>Produse cosmetice</h2>
                                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
                                         <button type="button" class="btn btn-default get">Despre noi</button>
@@ -28,7 +28,7 @@
                                 </div>
                                 <div class="item">
                                     <div class="col-sm-6">
-                                        <h1><span>A</span>-nsilvex</h1>
+                                        <h1><?php echo $general->logo_text; ?></h1>
                                         <h2>Livrare gratuita</h2>
                                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
                                         <button type="button" class="btn btn-default get">Despre livrare</button>

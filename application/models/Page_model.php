@@ -1,9 +1,10 @@
 <?php
 class Page_model extends CI_Model {
 
-    public $id;
-    public $title;
-    public $content;
+    public $title_romanian;
+    public $title_russian;
+    public $content_romanian;
+    public $content_russian;
     public $image;
     public $order;
     public $date;
@@ -33,8 +34,10 @@ class Page_model extends CI_Model {
 
     public function insert()
     {
-        $this->title = $_POST['title'];
-        $this->content = $_POST['content'];
+        $this->title_romanian = $_POST['title_romanian'];
+        $this->title_russian = $_POST['title_russian'];
+        $this->content_romanian = $_POST['content_romanian'];
+        $this->content_russian = $_POST['content_russian'];
 
         $this->image = $this->upload();
         if (empty($this->image)) unset($this->image);
@@ -49,8 +52,10 @@ class Page_model extends CI_Model {
 
     public function update()
     {
-        $this->title = $_POST['title'];
-        $this->content = $_POST['content'];
+        $this->title_romanian = $_POST['title_romanian'];
+        $this->title_russian = $_POST['title_russian'];
+        $this->content_romanian = $_POST['content_romanian'];
+        $this->content_russian = $_POST['content_russian'];
 
         $this->image = $this->upload();
         if (empty($this->image)) unset($this->image);

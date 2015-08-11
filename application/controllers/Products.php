@@ -27,17 +27,17 @@ class Products extends Frontend
         $this->data['config']["uri_segment"] = 2;
         $this->data['config']["use_page_numbers"] = TRUE;
 
-        $this->data['filters'] = $this->filter_relation_model->get_all();
         $this->data['config']["total_rows"] = $this->product_model->record_count();
 
         $choice = $this->data['config']["total_rows"] / $this->data['config']["per_page"];
         $this->data['config']["num_links"] = round($choice);
-
-        $this->data['sidebar_filters'] = $this->input->get_post('sidebar_filters');
     }
 
     public function index($page = 0)
     {
+        $this->data['sidebar_filters'] = $this->input->get_post('sidebar_filters');
+        $this->data['filters'] = $this->filter_relation_model->get_all();
+
         $this->data['config']["base_url"] = site_url('products');
 
         $this->pagination->initialize($this->data['config']);
@@ -52,6 +52,8 @@ class Products extends Frontend
 
     public function category($id, $page = 0)
     {
+        $this->data['sidebar_filters'] = $this->input->get_post('sidebar_filters');
+        $this->data['filters'] = $this->filter_relation_model->get_all();
 
         $this->data['config']["base_url"] = site_url('categories/'.$id);
 
@@ -117,7 +119,7 @@ class Products extends Frontend
                 foreach ($products as $id => $product) {
                     $product_db = $this->product_model->get_data_by_id($id);
                     $product_total = $product_db->price * intval($product['quantity']);
-                    $content .= $product_db->name . ' x ' . $product['quantity'] . ' = ' . $product_total . " Lei \n";
+                    $content .= $product_db->{'name_'.$this->data['language']} . ' x ' . $product['quantity'] . ' = ' . $product_total . " Lei \n";
                     $total += $product_total;
                     $order_array['products'][] = ['id' => $id, 'name' => $product_db->name, 'quantity' => $product['quantity'], 'total' => $product_total];
                 }

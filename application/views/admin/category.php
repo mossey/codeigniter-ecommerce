@@ -6,8 +6,12 @@
                 <header class="panel-heading"><span class="h4"><?php echo !empty($category) ? $category->name : 'Noua categorie'; ?></span></header>
                 <div class="panel-body"><p class="text-muted"></p>
                     <div class="form-group">
-                        <label>Nume</label>
-                        <input type="text" name="name" class="form-control" value="<?php echo !empty($category) ? $category->name : ''; ?>" placeholder="ex: Detergenti, Cadouri">
+                        <label>Nume (romana)</label>
+                        <input type="text" name="name_romanian" class="form-control" value="<?php echo !empty($category) ? $category->name_romanian : ''; ?>" placeholder="ex: Detergenti, Cadouri">
+                    </div>
+                    <div class="form-group">
+                        <label>Nume (rusa)</label>
+                        <input type="text" name="name_russian" class="form-control" value="<?php echo !empty($category) ? $category->name_russian : ''; ?>">
                     </div>
                 </div>
                 <footer class="panel-footer text-right bg-light lter">
