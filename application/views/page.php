@@ -21,12 +21,14 @@
                         </div>
 
                         <?php if (!empty($page->image)) { ?>
-                            <img src="" alt=""/>
+                            <img src="<?php echo site_url('img.php?src=uploads/'.$page->image.'&h=300'); ?>" alt="<?php echo $page->{'title_'.$language}; ?>" style="float: left;padding: 0 20px 20px 0;"/>
                         <?php } ?>
 
                         <p><?php echo nl2br($page->{'content_'.$language}); ?><p>
                     </div>
                 </div>
+
+                <div style="clear:both"></div>
 
                 <div class="response-area">
                     <h2><?php echo !empty($comments) ? count($comments) : '0'; ?> <?php echo lang('msg_comments'); ?></h2>

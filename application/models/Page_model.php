@@ -47,6 +47,19 @@ class Page_model extends CI_Model {
 
     public function upload()
     {
+        if (!empty($_FILES['image'])) {
+            if ($_FILES["image"]["error"] == UPLOAD_ERR_OK) {
+                $tmp_name = $_FILES["image"]["tmp_name"];
+                $name = $_FILES["image"]["name"];
+                $name = substr(md5($name), 0, 3) . substr(time(), 0, 3) . '-' . strtolower($name);
+
+                $path = "uploads/";
+
+                if (move_uploaded_file($tmp_name, $path.$name)) {
+                    return $name;
+                }
+            }
+        }
         return false;
     }
 

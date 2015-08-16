@@ -1,11 +1,15 @@
 <div class="row">
     <div class="col-lg-12">
-        <form method="post" action="<?php echo site_url('admin/pages/save'); ?>">
+        <form method="post" action="<?php echo site_url('admin/pages/save'); ?>" enctype="multipart/form-data">
             <input type="hidden" name="id" value="<?php echo !empty($page) ? $page->id : ''; ?>"/>
 
             <section class="panel">
-                <header class="panel-heading"><span
-                        class="h4"><?php echo !empty($page) ? $page->title_romanian : 'Pagina noua'; ?></span></header>
+                <header class="panel-heading">
+                    <?php if (!empty($page) && !empty($page->image)) { ?>
+                        <img src="<?php echo site_url('img.php?src=uploads/'.$page->image); ?>" height="50" class="m-r-lg">
+                    <?php } ?>
+                    <span class="h4"><?php echo !empty($page) ? $page->title_romanian : 'Pagina noua'; ?></span>
+                </header>
                 <div class="panel-body">
                     <div class="form-group">
                         <label>Titlu (romana) *</label>
@@ -17,7 +21,7 @@
                     </div>
                     <div class="form-group">
                         <label>Imagine</label>
-                        <input name="file" type="file" class="form-control">
+                        <input name="image" type="file" class="form-control">
                     </div>
                     <div class="form-group">
                         <label>Content (romana) *</label>
