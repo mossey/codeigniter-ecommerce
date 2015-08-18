@@ -477,7 +477,7 @@ if ( ! function_exists('url_title'))
 	 * @param	bool	$lowercase	Wether to transform the output string to lowercase
 	 * @return	string
 	 */
-	function url_title($str, $separator = '-', $lowercase = FALSE)
+	function url_title($str, $separator = '-', $lowercase = TRUE)
 	{
 		if ($separator === 'dash')
 		{

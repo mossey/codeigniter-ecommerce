@@ -2,7 +2,7 @@
     <div class="product-image-wrapper">
         <div class="single-products">
             <div class="productinfo text-center">
-                <a href="<?php echo site_url(url_title($product->{'name_'.$language}).'-'.$product->id); ?>">
+                <a href="<?php echo site_url(url_title(convert_accented_characters($product->{'name_'.$language})).'-'.$product->id); ?>">
                     <img src="<?php echo site_url('img.php?src=uploads/'.$product->image.'&h=130'); ?>" alt="<?php echo $product->{'name_'.$language}; ?>" />
                 </a>
 

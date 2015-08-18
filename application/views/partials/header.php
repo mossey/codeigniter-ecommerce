@@ -139,7 +139,7 @@
                             <?php if (!empty($pages)) { ?>
                                 <?php foreach ($pages as $page) { ?>
                                     <li>
-                                        <a href="<?php echo site_url(url_title($page->{'title_'.$language}) . '/' . $page->id); ?>"><?php echo $page->{'title_'.$language}; ?></a>
+                                        <a href="<?php echo site_url(url_title(convert_accented_characters($page->{'title_'.$language})) . '/' . $page->id); ?>"><?php echo $page->{'title_'.$language}; ?></a>
                                     </li>
                                 <?php } ?>
                             <?php } ?>

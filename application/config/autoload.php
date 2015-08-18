@@ -148,5 +148,6 @@ $autoload['model'] = array(
     'Filter_category_model' => 'filter_category_model',
     'Filter_model' => 'filter_model',
     'Filter_relation_model' => 'filter_relation_model',
-    'Newsletter_model' => 'newsletter_model'
+    'Newsletter_model' => 'newsletter_model',
+    'Offer_model' => 'offer_model',
 );

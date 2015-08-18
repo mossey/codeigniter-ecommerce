@@ -3,15 +3,15 @@
         <form method="post" action="<?php echo site_url('admin/categories/save'); ?>">
             <input type="hidden" name="id" value="<?php echo !empty($category) ? $category->id : ''; ?>">
             <section class="panel">
-                <header class="panel-heading"><span class="h4"><?php echo !empty($category) ? $category->name : 'Noua categorie'; ?></span></header>
+                <header class="panel-heading"><span class="h4"><?php echo !empty($category) ? $category->name_romanian : 'Noua categorie'; ?></span></header>
                 <div class="panel-body"><p class="text-muted"></p>
                     <div class="form-group">
                         <label>Nume (romana)</label>
-                        <input type="text" name="name_romanian" class="form-control" value="<?php echo !empty($category) ? $category->name_romanian : ''; ?>" placeholder="ex: Detergenti, Cadouri">
+                        <input type="text" name="name_romanian" required class="form-control" value="<?php echo !empty($category) ? $category->name_romanian : ''; ?>" placeholder="ex: Detergenti, Cadouri">
                     </div>
                     <div class="form-group">
                         <label>Nume (rusa)</label>
-                        <input type="text" name="name_russian" class="form-control" value="<?php echo !empty($category) ? $category->name_russian : ''; ?>">
+                        <input type="text" name="name_russian" required class="form-control" value="<?php echo !empty($category) ? $category->name_russian : ''; ?>">
                     </div>
                 </div>
                 <footer class="panel-footer text-right bg-light lter">

@@ -10,14 +10,17 @@
                     <div class="col-sm-5">
                         <?php if (!empty($product->image)) { ?>
                             <div class="view-product">
-                                <img src="<?php echo site_url('img.php?src=uploads/'.$product->image.'&w=330&h=380'); ?>" alt="<?php echo $product->{'name_'.$language}; ?>" />
+                                <img src="<?php echo site_url('img.php?src=uploads/'.$product->image.'&h=380'); ?>" alt="<?php echo $product->{'name_'.$language}; ?>" />
                             </div>
                         <?php } ?>
                     </div>
                     <div class="col-sm-7">
                         <div class="product-information">
                             <h2><?php echo $product->{'name_'.$language}; ?></h2>
-                            <p><?php echo lang('msg_views'); ?>: <?php echo $product->views; ?></p>
+
+                            <?php if (!empty($product->views)) { ?>
+                                <p><?php echo lang('msg_views'); ?>: <?php echo $product->views; ?></p>
+                            <?php } ?>
 
                             <?php if (!empty($product->special_price)) { ?>
                             <span style="display:block">
@@ -40,7 +43,7 @@
                                     <?php echo lang('msg_add_to_cart'); ?>
                                 </button>
                             </span>
-                            <p><b><?php echo lang('msg_available'); ?>:</b> <?php echo $product->active ? lang('msg_available') : lang('msg_not_available'); ?></p>
+                            <p><b><?php echo lang('msg_availability'); ?>:</b> <?php echo $product->active ? lang('msg_available') : lang('msg_not_available'); ?></p>
                             <?php if (!empty($product->categories)) { ?>
                                 <?php foreach ($product->categories as $category) { ?>
                                     <p><b><?php echo $category['category_name']; ?></b> : <?php echo implode(', ', $category['filter_names']); ?></p>
@@ -67,9 +70,11 @@
                             <p style="padding:0 20px 10px 20px"><?php echo $product->{'description_'.$language}; ?></p>
                         </div>
 
-                        <div class="tab-pane fade" id="delivery" >
-                            <p style="padding:0 20px 10px 20px">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo nemo quidem reprehenderit veritatis. Accusamus cumque eligendi explicabo itaque iure maiores neque quo? Accusantium adipisci asperiores consequatur dolor ipsum magnam, sequi! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aliquid deserunt est fuga id illo in, iste magnam neque nobis non odio quam quasi quisquam reprehenderit similique suscipit tempora voluptatum.</p>
-                        </div>
+                        <?php if (!empty($general->product_delivery)) { ?>
+                            <div class="tab-pane fade" id="delivery" >
+                                <p style="padding:0 20px 10px 20px"><?php echo $general->product_delivery; ?></p>
+                            </div>
+                        <?php } ?>
 
                         <div class="tab-pane fade" id="reviews" >
                             <div class="col-sm-12">

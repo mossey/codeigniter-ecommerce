@@ -1,7 +1,6 @@
 <?php
 class Category_model extends CI_Model {
 
-    public $id;
     public $name_romanian;
     public $name_russian;
     public $date;
@@ -64,7 +63,8 @@ class Category_model extends CI_Model {
 
     public function update()
     {
-        $this->name_romanian    = $_POST['name_russian'];
+        $this->name_romanian    = $_POST['name_romanian'];
+        $this->name_russian    = $_POST['name_russian'];
 
         $this->db->update($this->table, $this, "id = ".$_POST['id']);
     }

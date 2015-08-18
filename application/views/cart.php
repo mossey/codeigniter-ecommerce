@@ -1,3 +1,14 @@
+<style>
+    .image-td {
+        width: 150px;
+        padding: 20px 15px!important;
+        margin: 0;
+    }
+    .image-td img {
+        margin:auto;
+        display:block
+    }
+</style>
 <form method="post" action="<?php echo site_url('products/checkout'); ?>">
     <section id="cart_items">
         <div class="container">
@@ -12,12 +23,12 @@
                     <table class="table table-condensed" data-delivery-free-from="<?php echo !empty($general->delivery_free_from) ? $general->delivery_free_from : ''; ?>">
                         <thead>
                         <tr class="cart_menu">
-                            <td class="image"><?php echo lang('msg_cart'); ?></td>
+                            <td class="image image-td"><?php echo lang('msg_cart'); ?></td>
                             <td class="description"></td>
                             <td class="price"><?php echo lang('msg_price'); ?></td>
                             <td class="quantity"><?php echo lang('msg_quantity'); ?></td>
                             <td class="total"><?php echo lang('msg_total'); ?></td>
-                            <td></td>
+                            <td class="delete"></td>
                         </tr>
                         </thead>
                         <tbody>
@@ -25,9 +36,9 @@
                             <?php $product->price = !empty($product->special_price) ? $product->special_price : $product->price; ?>
 
                             <tr data-price="<?php echo $product->price; ?>">
-                                <td class="cart_product">
+                                <td class="cart_product image-td">
                                     <a href="<?php echo site_url(url_title($product->{'name_'.$language}) . '-' . $product->id); ?>"><img
-                                            src="<?php echo site_url('img.php?src=uploads/' . $product->image . '&h=130'); ?>" alt=""></a>
+                                            src="<?php echo site_url('img.php?src=uploads/' . $product->image . '&h=100'); ?>" alt=""></a>
                                 </td>
                                 <td class="cart_description">
                                     <h4>
@@ -54,8 +65,8 @@
                                        data-price="<?php echo $product->price * $product->quantity; ?>"><?php echo $product->price * $product->quantity; ?>
                                         Lei</p>
                                 </td>
-                                <td class="cart_delete">
-                                    <a class="cart_quantity_delete"><i class="fa fa-times"></i></a>
+                                <td class="cart_delete" style="overflow:visible">
+                                    <a class="cart_quantity_delete" style="position: relative;top: -63px;left: -10px;"><i class="fa fa-times"></i></a>
                                 </td>
                             </tr>
                         <?php } ?>

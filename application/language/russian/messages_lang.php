@@ -1,9 +1,9 @@
 <?php
 $lang["msg_name"] = "Имя";
-$lang["msg_email"] = "Электронная почта";
+$lang["msg_email"] = "Почта";
 $lang["msg_address"] = "Адрес";
 $lang["msg_telephone"] = "Телефон";
-$lang["msg_mobile"] = "Мобильная";
+$lang["msg_mobile"] = "Мобильный";
 $lang["msg_send"] = "Послать";
 $lang["msg_message"] = "Сообщение";
 
@@ -43,7 +43,6 @@ $lang["msg_product_removed"] = "Продукт был успешно удале�
 $lang["msg_total"] = "Общее";
 $lang["msg_delivery"] = "Доставка";
 $lang["msg_social"] = "Социальный";
-$lang["msg_mobile"] = "Мобильная";
 $lang["msg_contact_data"] = "Контакты";
 $lang["msg_or"] = "или";
 $lang["msg_login"] = "Войдите";

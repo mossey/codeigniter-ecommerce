@@ -891,6 +891,7 @@ h2.title {
 .productinfo img{
   max-width: 100%;
   height: 130px;
+  margin-top: 10px;
 }
 
 .productinfo{
@@ -1176,12 +1177,15 @@ h2.title {
 
 .view-product {
   position: relative;
+  border: 1px solid #F7F7F0;
+  text-align: center;
+
 }
 
 .view-product img {
-  border: 1px solid #F7F7F0;
-  height: 380px;
-  width: 100%;
+  max-height: 380px;
+  max-width: 100%;
+  padding: 20px;
 }
 
 .view-product h3 {
@@ -2667,3 +2671,7 @@ div#cursmdcursBox {
 }
 #reviews .comment ul li i {margin-right:5px}
 #reviews .comment ul p {}
+
+.productinfo {
+  height: 320px;
+}
