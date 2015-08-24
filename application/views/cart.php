@@ -9,7 +9,7 @@
         display:block
     }
 </style>
-<form method="post" action="<?php echo site_url('products/checkout'); ?>">
+<form method="post" action="<?php echo site_url('products/checkout'); ?>" data-currency="<?php echo $general->currency; ?>" class="form-with-data">
     <section id="cart_items">
         <div class="container">
             <div class="breadcrumbs">
@@ -48,7 +48,7 @@
                                     <p><?php echo lang('msg_views'); ?>: <?php echo $product->views; ?></p>
                                 </td>
                                 <td class="cart_price">
-                                    <p><?php echo $product->price; ?></p>
+                                    <p><?php echo $product->price.' '.$general->currency; ?></p>
                                 </td>
                                 <td class="cart_quantity">
                                     <div class="cart_quantity_button">
@@ -62,8 +62,7 @@
                                 </td>
                                 <td class="cart_total">
                                     <p class="cart_total_price"
-                                       data-price="<?php echo $product->price * $product->quantity; ?>"><?php echo $product->price * $product->quantity; ?>
-                                        Lei</p>
+                                       data-price="<?php echo $product->price * $product->quantity; ?>"><?php echo $product->price * $product->quantity.' '.$general->currency; ?></p>
                                 </td>
                                 <td class="cart_delete" style="overflow:visible">
                                     <a class="cart_quantity_delete" style="position: relative;top: -63px;left: -10px;"><i class="fa fa-times"></i></a>
@@ -156,7 +155,7 @@
                                 <li><?php echo lang('msg_delivery'); ?> <span><?php echo $general->delivery; ?></span></li>
                             <?php } ?>
 
-                            <li><?php echo lang('msg_total'); ?> <span class="delivery-free" style="font-weight: bold;color: #65AE17;margin-left: 8px;display:none" data-delivery="<?php echo !empty($general->delivery_free_from) ? '+ '.$general->delivery_free_from.' livrarea' : ''; ?>" data-free-delivery="+ livrarea gratisa"></span> <span class="total">N / A</span></li>
+                            <li><?php echo lang('msg_total'); ?> <span class="delivery-free" style="font-weight: bold;color: #65AE17;margin-left: 8px;display:none" data-delivery="<?php echo !empty($general->delivery_free_from) ? '+ '.$general->delivery_free_from.' '.$general->currency.' livrarea' : ''; ?>" data-free-delivery="+ livrarea gratisa"></span> <span class="total">N / A</span></li>
                         </ul>
                     </div>
                 </div>

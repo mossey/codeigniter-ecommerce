@@ -28,7 +28,7 @@
                                 <td><?php echo $product->name_romanian; ?></td>
                                 <td><?php echo $product->description_romanian; ?></td>
                                 <td><?php echo $product->category_name_romanian; ?></td>
-                                <td><?php echo $product->price; ?></td>
+                                <td><?php echo $product->price.' '.$general->currency; ?></td>
                                 <td><?php echo date('d M Y', strtotime($product->date)); ?></td>
                                 <td><?php echo $product->active == 1 ? '<span class="text-success">In stoc</span>' : '<span class="text-danger">Nu este in stoc</span>'; ?></td>
                                 <td><a href="<?php echo site_url('admin/products/edit/'.$product->id); ?>" class="btn btn-xs btn-info">Editeaza</a></td>

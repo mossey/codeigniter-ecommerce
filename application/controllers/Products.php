@@ -23,50 +23,54 @@ class Products extends Frontend
         $this->data['config']['num_tag_open'] = '<li>';
         $this->data['config']['num_tag_close'] = '</li>';
 
-        $this->data['config']["per_page"] = 20;
+        $this->data['config']["per_page"] = 3;
         $this->data['config']["uri_segment"] = 2;
-        $this->data['config']["use_page_numbers"] = TRUE;
+        $this->data['config']["use_page_numbers"] = FALSE;
 
-        $this->data['config']["total_rows"] = $this->product_model->record_count();
-
-        $choice = $this->data['config']["total_rows"] / $this->data['config']["per_page"];
-        $this->data['config']["num_links"] = round($choice);
+        $this->data['filters'] = $this->filter_relation_model->get_all();
+        $this->data['sidebar_filters'] = $this->input->get_post('sidebar_filters');
     }
 
     public function index($page = 0)
     {
-        $this->data['sidebar_filters'] = $this->input->get_post('sidebar_filters');
-        $this->data['filters'] = $this->filter_relation_model->get_all();
-
+        $this->data['config']["total_rows"] = $this->product_model->record_count($this->data['sidebar_filters']);
+        $choice = $this->data['config']["total_rows"] / $this->data['config']["per_page"];
+        $this->data['config']["num_links"] = round($choice);
         $this->data['config']["base_url"] = site_url('products');
-
         $this->pagination->initialize($this->data['config']);
 
-        $this->data['products'] = $this->product_model->fetch_products($this->data['config']["per_page"], $page, $this->data['sidebar_filters']);
+        $this->data['products'] = $this->product_model->fetch_products($this->data['config']["per_page"], $page, $this->data['sidebar_filters'], (!empty($_POST['sort_by']) ? $_POST['sort_by'] : false));
         $this->data['links'] = $this->pagination->create_links();
 
-        $this->load->view('partials/header', $this->data);
-        $this->load->view('products', $this->data);
-        $this->load->view('partials/footer', $this->data);
+        if (!empty($_POST['ajax'])) {
+            $this->load->view('partials/products_inside', $this->data);
+        } else {
+            $this->load->view('partials/header', $this->data);
+            $this->load->view('products', $this->data);
+            $this->load->view('partials/footer', $this->data);
+        }
     }
 
     public function category($id, $page = 0)
     {
-        $this->data['sidebar_filters'] = $this->input->get_post('sidebar_filters');
-        $this->data['filters'] = $this->filter_relation_model->get_all();
-
-        $this->data['config']["base_url"] = site_url('categories/'.$id);
-
+        $this->data['config']["total_rows"] = $this->product_model->record_count($this->data['sidebar_filters'], $id);
+        $choice = $this->data['config']["total_rows"] / $this->data['config']["per_page"];
+        $this->data['config']["num_links"] = round($choice);
+        $this->data['config']["base_url"] = site_url('categorie/'.$id);
         $this->pagination->initialize($this->data['config']);
 
-        $this->data['products'] = $this->product_model->get_data_by_category($id);
+        $this->data['products'] = $this->product_model->fetch_products($this->data['config']["per_page"], $page, $this->data['sidebar_filters'], (!empty($_POST['sort_by']) ? $_POST['sort_by'] : false), false, $id);
         $this->data['links'] = $this->pagination->create_links();
 
         $this->data['main_category'] = $this->category_model->get_data_by_id($id);
 
-        $this->load->view('partials/header', $this->data);
-        $this->load->view('products', $this->data);
-        $this->load->view('partials/footer', $this->data);
+        if (!empty($_POST['ajax'])) {
+            $this->load->view('partials/products_inside', $this->data);
+        } else {
+            $this->load->view('partials/header', $this->data);
+            $this->load->view('products', $this->data);
+            $this->load->view('partials/footer', $this->data);
+        }
     }
 
     public function product($id)

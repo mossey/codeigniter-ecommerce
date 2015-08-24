@@ -13,26 +13,22 @@
     <?php } ?>
 
     <?php if (!empty($filters)) { ?>
-        <form method="post">
-            <br>
-            <br>
-            <h2><?php echo lang('msg_filters'); ?></h2>
-            <div class="filters">
-                <?php foreach ($filters as $category) { ?>
-                    <div class="filter-category">
-                        <h5><?php echo end($category)['category_name']; ?></h5>
-                        <?php foreach ($category as $filter) { ?>
-                            <div class="filter-name">
-                                <input type="checkbox" name="sidebar_filters[]" <?php echo !empty($sidebar_filters) && in_array($filter['filter_id'], $sidebar_filters) ? 'checked' : ''; ?> value="<?php echo $filter['filter_id']; ?>" id="filter-<?php echo $filter['filter_id']; ?>" />
-                                <label for="filter-<?php echo $filter['filter_id']; ?>"><?php echo $filter['filter_name']; ?></label>
-                            </div>
-                        <?php } ?>
-                    </div>
-                <?php } ?>
-            </div>
-
-            <button type="submit" class="btn btn-primary" style="width: 100%;margin: -20px 0 40px 0;"><?php echo lang('msg_search'); ?></button>
-        </form>
+        <br>
+        <br>
+        <h2><?php echo lang('msg_filters'); ?></h2>
+        <div class="filters">
+            <?php foreach ($filters as $category) { ?>
+                <div class="filter-category">
+                    <h5><?php echo end($category)['category_name']; ?></h5>
+                    <?php foreach ($category as $filter) { ?>
+                        <div class="filter-name">
+                            <input type="checkbox" name="sidebar_filters[]" <?php echo !empty($sidebar_filters) && in_array($filter['filter_id'], $sidebar_filters) ? 'checked' : ''; ?> value="<?php echo $filter['filter_id']; ?>" id="filter-<?php echo $filter['filter_id']; ?>" />
+                            <label for="filter-<?php echo $filter['filter_id']; ?>"><?php echo $filter['filter_name']; ?></label>
+                        </div>
+                    <?php } ?>
+                </div>
+            <?php } ?>
+        </div>
     <?php } ?>
 
 

@@ -140,34 +140,77 @@ class Product_model extends CI_Model {
         return end($data);
     }
 
-    public function record_count() {
-        return $this->db->count_all($this::TABLE);
+    public function record_count($filters, $category_id = null) {
+        $this->db->select('p.*');
+
+        if (!empty($filters)) {
+            $this->db->join(Filter_relation_model::TABLE.' fr', 'p.id = fr.product_id');
+            $this->db->where_in('fr.filter_id', $filters);
+            $this->db->group_by("p.id");
+        }
+
+        if (!empty($category_id)) {
+            $count_result = $this->db->where('p.category', $category_id)->get($this::TABLE);
+        } else {
+            $count_result = $this->db->get($this::TABLE.' p');
+        }
+
+        die($count_result);
+        return $count_result;
     }
 
-    public function fetch_filters_products($limit, $start, $filters) {
-        $this->db->select('p.*');
-        $this->db->from(Filter_relation_model::TABLE.' fr');
+    public function fetch_products($limit, $start, $filters = array(), $sort_by = false, $query = false, $category_id = null) {
 
-        $this->db->join(Product_model::TABLE.' p', 'p.id = fr.product_id');
+        if (!empty($filters)) {
+            $this->db->from(Filter_relation_model::TABLE.' fr');
+            $this->db->join(Product_model::TABLE.' p', 'p.id = fr.product_id');
+            $this->db->where_in('fr.filter_id', $filters);
+            $this->db->group_by("p.id");
+        } else {
+            $this->db->from(Product_model::TABLE.' p');
+        }
 
-        $this->db->where_in('fr.filter_id', $filters);
-        $this->db->group_by("p.id");
+        if (!empty($query)) {
+            $this->db->like('p.name_romanian', $query);
+            $this->db->or_like('p.name_russian', $query);
+            $this->db->or_like('p.description_romanian', $query);
+            $this->db->or_like('p.description_russian', $query);
+            $this->db->or_like('p.special_content_romanian', $query);
+            $this->db->or_like('p.special_content_russian', $query);
+        }
+
+        if (!empty($category_id)) {
+            $this->db->where('p.category', $category_id);
+        }
+
+        switch ($sort_by) {
+            case 'price_low':
+            default:
+                $this->db->order_by("p.price", "asc");
+                break;
+
+            case 'price_high':
+                $this->db->order_by("p.price", "desc");
+                break;
+
+            case 'popular':
+                $this->db->order_by("p.views", "desc");
+                break;
+
+            case 'name_asc':
+                $this->db->order_by("p.name_romanian", "asc");
+                break;
+
+            case 'name_desc':
+                $this->db->order_by("p.name_romanian", "desc");
+                break;
+        }
+
 
         $this->db->limit($limit, $start);
         $query = $this->db->get();
 
         return $query->result();
-    }
-
-    public function fetch_products($limit, $start, $filters = array()) {
-        if (!empty($filters)) {
-            return $this->fetch_filters_products($limit, $start, $filters);
-        } else {
-            $this->db->limit($limit, $start);
-            $query = $this->db->get($this::TABLE);
-
-            return $query->result();
-        }
     }
 
     public function delete_by_id($id)

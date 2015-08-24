@@ -837,6 +837,7 @@ h2.title:before{
 
 .features_items{
 	overflow:hidden;
+  position:relative
 }
 
 
@@ -2674,4 +2675,82 @@ div#cursmdcursBox {
 
 .productinfo {
   height: 320px;
+}
+
+/* -------------- loader10 -------------- */
+
+.products-inside {
+  transition: opacity 0.6s;
+  -webkit-transition: opacity 0.6s;
+  -o-transition: opacity 0.6s;
+  -moz-transition: opacity 0.6s;
+}
+.loader10:before{
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: -25px;
+  height: 12px;
+  width: 12px;
+  border-radius: 12px;
+  -webkit-animation: loader10g 1s ease-in-out infinite;
+  animation: loader10g 1s ease-in-out infinite;
+}
+
+.loader10{
+  display:none;
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  top: 250px;
+  left: 46%;
+  border-radius: 12px;
+  -webkit-animation: loader10m 1s ease-in-out infinite;
+  animation: loader10m 1s ease-in-out infinite;
+}
+
+
+.loader10:after{
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: 25px;
+  height: 10px;
+  width: 10px;
+  border-radius: 10px;
+  -webkit-animation: loader10d 1s ease-in-out infinite;
+  animation: loader10d 1s ease-in-out infinite;
+}
+
+@-webkit-keyframes loader10g{
+  0%{background-color: rgba(254, 152, 15, .2);}
+  25%{background-color: rgba(254, 152, 15, 1);}
+  100%{background-color: rgba(254, 152, 15, .2);}
+}
+@keyframes loader10g{
+  0%{background-color: rgba(254, 152, 15, .2);}
+  25%{background-color: rgba(254, 152, 15, 1);}
+  100%{background-color: rgba(254, 152, 15, .2);}
+}
+
+@-webkit-keyframes loader10m{
+  0%{background-color: rgba(254, 152, 15, .2);}
+  50%{background-color: rgba(254, 152, 15, 1);}
+  100%{background-color: rgba(254, 152, 15, .2);}
+}
+@keyframes loader10m{
+  0%{background-color: rgba(254, 152, 15, .2);}
+  50%{background-color: rgba(254, 152, 15, 1);}
+  100%{background-color: rgba(254, 152, 15, .2);}
+}
+
+@-webkit-keyframes loader10d{
+  0%{background-color: rgba(254, 152, 15, .2);}
+  75%{background-color: rgba(254, 152, 15, 1);}
+  100%{background-color: rgba(254, 152, 15, .2);}
+}
+@keyframes loader10d{
+  0%{background-color: rgba(254, 152, 15, .2);}
+  75%{background-color: rgba(254, 152, 15, 1);}
+  100%{background-color: rgba(254, 152, 15, .2);}
 }

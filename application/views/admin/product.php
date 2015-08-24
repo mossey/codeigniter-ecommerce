@@ -50,11 +50,11 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Pret *</label>
-                        <input type="text" name="price" required placeholder="e.g. 150 Lei" class="form-control" value="<?php echo !empty($product) ? $product->price : ''; ?>">
+                        <label>Pret (<?php echo $general->currency; ?>) *</label>
+                        <input type="text" name="price" required placeholder="e.g. 150" class="form-control" value="<?php echo !empty($product) ? $product->price : ''; ?>">
                     </div>
                     <div class="form-group">
-                        <label>Pret special</label>
+                        <label>Pret special (<?php echo $general->currency; ?>)</label>
                         <input type="text" name="special_price" placeholder="Rescrie pretul original" class="form-control" value="<?php echo !empty($product) ? $product->special_price : ''; ?>">
                     </div>
                     <div class="form-group">

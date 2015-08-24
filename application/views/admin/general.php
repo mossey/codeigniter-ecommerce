@@ -20,6 +20,12 @@
                                   rows="3"><?php echo !empty($general->about) ? $general->about : ''; ?></textarea>
                     </div>
                     <div class="form-group">
+                        <label>Valuta</label>
+                        <input name="General[currency]"
+                               value="<?php echo !empty($general->currency) ? $general->currency : ''; ?>" type="text"
+                               class="form-control" placeholder="">
+                    </div>
+                    <div class="form-group">
                         <label>Telefon</label>
                         <input name="General[telephone]"
                                value="<?php echo !empty($general->telephone) ? $general->telephone : ''; ?>" type="text"

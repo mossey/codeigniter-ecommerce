@@ -18,6 +18,20 @@ class User_model extends CI_Model {
         parent::__construct();
     }
 
+    public function get_data()
+    {
+        $query = $this->db->get($this->table);
+
+        return $query->result();
+    }
+
+    public function get_data_by_ids_array($array)
+    {
+        $query = $this->db->where_in('id', $array)->get($this->table);
+
+        return $query->result();
+    }
+
     public function get_user()
     {
         $user_id = $this->session->userdata('user_id');

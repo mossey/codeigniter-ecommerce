@@ -104,7 +104,7 @@ $autoload['helper'] = array('url', 'file', 'text', 'site');
 |
 */
 
-$autoload['config'] = array();
+$autoload['config'] = array('email');
 
 
 /*

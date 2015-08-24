@@ -8,11 +8,11 @@
 
                 <?php if (!empty($product->special_price)) { ?>
                     <h2 style="font-weight: bold;color: #E34E31;font-size:32px">
-                        <span style="display: inline-block;text-decoration: line-through;color: #6D6B67;font-size: 16px;margin-left: -30px;"><?php echo $product->price; ?></span>
-                        <?php echo $product->special_price; ?>
+                        <span style="display: inline-block;text-decoration: line-through;color: #6D6B67;font-size: 16px;margin-left: -30px;"><?php echo $product->price.' '.$general->currency; ?></span>
+                        <?php echo $product->special_price.' '.$general->currency; ?>
                     </h2>
                 <?php } else { ?>
-                    <h2><?php echo $product->price; ?></h2>
+                    <h2><?php echo $product->price.' '.$general->currency; ?></h2>
                 <?php } ?>
 
                 <a href="<?php echo site_url(url_title($product->{'name_'.$language}).'-'.$product->id); ?>"><p><?php echo $product->{'name_'.$language}; ?></p></a>

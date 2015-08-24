@@ -37,6 +37,35 @@ function eraseCookie(name) {
 }
 
 $(document).ready(function(){
+
+	var frm = $('.products-form');
+	frm.submit(function (ev) {
+		$('.products-inside').css('opacity', 0.2);
+		$('.loader10').hide().fadeIn();
+		$.ajax({
+			type: frm.attr('method'),
+			url: frm.attr('action'),
+			data: frm.serialize(),
+			success: function (data) {
+				setTimeout(function(){
+					$('.loader10').fadeOut();
+					$('.products-inside').html(data).css('opacity', 1);
+				}, 500);
+			}
+		});
+
+		ev.preventDefault();
+		return false;
+	});
+
+	$('.filters input').change(function(){
+		$(this).parents('form').submit();
+	});
+
+	$('.filter-selects select').change(function(){
+		$(this).parents('form').submit();
+	});
+
 	$(function () {
 		$.scrollUp({
 	        scrollName: 'scrollUp', // Element ID
@@ -119,7 +148,7 @@ $(document).ready(function(){
 
 
 
-		$('.total_area').find('.total').html(total + ' Lei');
+		$('.total_area').find('.total').html(total + ' '+$('form.form-with-data').data('currency'));
 	}
 
 	$('.cart_quantity_up').click(function () {
@@ -132,7 +161,7 @@ $(document).ready(function(){
 			product_total = price * new_quantity;
 
 		$input.val(new_quantity);
-		$tr.find('.cart_total_price').data('price', product_total).html(product_total + ' Lei');
+		$tr.find('.cart_total_price').data('price', product_total).html(product_total + ' '+$('form.form-with-data').data('currency'));
 
 		total();
 	});
@@ -147,7 +176,7 @@ $(document).ready(function(){
 
 		if (new_quantity >= 1) {
 			$input.val(current_quantity - 1);
-			$tr.find('.cart_total_price').data('price', product_total).html(product_total + ' Lei');
+			$tr.find('.cart_total_price').data('price', product_total).html(product_total + ' '+$('form.form-with-data').data('currency'));
 		}
 
 		total();

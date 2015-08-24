@@ -20,12 +20,27 @@
                         <input name="file" type="file" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label>Content (romana) *</label>
-                        <textarea name="content_romanian" class="form-control" required rows="10"><?php echo !empty($page) ? $page->content_romanian : ''; ?></textarea>
+                        <label>Content (romana)</label>
+                        <textarea name="content_romanian" class="form-control" rows="10"><?php echo !empty($page) ? $page->content_romanian : ''; ?></textarea>
                     </div>
                     <div class="form-group">
-                        <label>Content (rusa) *</label>
-                        <textarea name="content_russian" class="form-control" required rows="10"><?php echo !empty($page) ? $page->content_russian : ''; ?></textarea>
+                        <label>Content (rusa)</label>
+                        <textarea name="content_russian" class="form-control" rows="10"><?php echo !empty($page) ? $page->content_russian : ''; ?></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Produse</label>
+                        <?php if (!empty($products)) { ?>
+                            <?php foreach ($products as $product) { ?>
+                                <div class="product-filters-category">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="products[]" value="<?php echo $product->id; ?>" <?php echo !empty($offers) && !empty($offers->products) && in_array($product->id, $product->offers) ? 'checked' : ''; ?>>
+                                            <?php echo $product->name_romanian; ?>
+                                        </label>
+                                    </div>
+                                </div>
+                            <?php } ?>
+                        <?php } ?>
                     </div>
                 </div>
                 <footer class="panel-footer text-right bg-light lter">

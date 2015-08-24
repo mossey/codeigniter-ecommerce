@@ -24,12 +24,12 @@
 
                             <?php if (!empty($product->special_price)) { ?>
                             <span style="display:block">
-                                <span style="float:none;font-size: 20px;text-decoration: line-through;"><?php echo $product->price; ?></span>
+                                <span style="float:none;font-size: 20px;text-decoration: line-through;"><?php echo $product->price.' '.$general->currency; ?></span>
                             </span>
-                            <span style="display:block;margin-top: -10px;font-size: 36px;font-weight: bold;color: #E34E31;"><?php echo $product->special_price; ?></span>
+                            <span style="display:block;margin-top: -10px;font-size: 36px;font-weight: bold;color: #E34E31;"><?php echo $product->special_price.' '.$general->currency; ?></span>
                             <?php } else { ?>
                                 <span style="display:block">
-                                <span style="float:none"><?php echo $product->price; ?></span>
+                                <span style="float:none"><?php echo $product->price.' '.$general->currency; ?></span>
                             </span>
                             <?php } ?>
 
