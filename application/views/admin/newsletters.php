@@ -10,6 +10,8 @@
                     <div class="row">
                         <div class="col-md-5">
                             <?php if (!empty($users)) { ?>
+                                <h3>Utilizatori inregistrati</h3><br>
+
                                 <table class="table table-responsive m-b-none text-sm">
                                     <thead>
                                     <tr>
@@ -17,6 +19,7 @@
                                         <th>Email</th>
                                         <th>Telefon</th>
                                         <th>Adresa</th>
+                                        <th>Limba</th>
                                         <th width="120">Data inregistrarii</th>
                                         <th></th>
                                     </tr>
@@ -28,8 +31,9 @@
                                             <td><?php echo $user->email; ?></td>
                                             <td><?php echo $user->telephone; ?></td>
                                             <td><?php echo $user->address; ?></td>
+                                            <td><?php echo $user->language == 'romanian' ? 'Romana' : 'Rusa'; ?></td>
                                             <td><?php echo date('d.m.Y', strtotime($user->date)); ?></td>
-                                            <td><input type="checkbox" name="subscribers[]" value="<?php echo $user->id; ?>" checked /></td>
+                                            <td><input type="checkbox" name="subscribers[]" value="<?php echo $user->id; ?>" <?php echo $user->subscribed == 0 ? 'disabled' : 'checked'; ?> /></td>
                                         </tr>
                                     <?php } ?>
                                     </tbody>
@@ -37,10 +41,19 @@
                             <?php } ?>
                         </div>
                         <div class="col-md-6 col-md-offset-1">
+                            <h3>Campanie noua</h3><br>
                             <div class="form-group">
-                                <label class="col-md-2">Subiect * : </label>
+                                <label class="col-md-2">Subiect (romana) * : </label>
                                 <div class="col-md-10">
-                                    <input type="text" required name="subject" class="form-control" />
+                                    <input type="text" required name="subject_romanian" class="form-control" />
+                                </div>
+                            </div>
+                            <br>
+                            <br>
+                            <div class="form-group">
+                                <label class="col-md-2">Subiect (rusa) * : </label>
+                                <div class="col-md-10">
+                                    <input type="text" required name="subject_russian" class="form-control" />
                                 </div>
                             </div>
                             <br>
@@ -54,9 +67,18 @@
                             <br>
                             <br>
                             <div class="form-group">
-                                <label class="col-md-2">Text * : </label>
+                                <label class="col-md-2">Text (romana) * : </label>
                                 <div class="col-md-10">
-                                    <textarea required class="form-control"></textarea>
+                                    <textarea required name="content_romanian" class="form-control"></textarea>
+                                </div>
+                            </div>
+                            <br>
+                            <br>
+                            <br>
+                            <div class="form-group">
+                                <label class="col-md-2">Text (rusa) * : </label>
+                                <div class="col-md-10">
+                                    <textarea required name="content_russian" class="form-control"></textarea>
                                 </div>
                             </div>
                             <br>
@@ -70,30 +92,26 @@
                             <div class="clearfix"></div>
                             <br>
                             <br>
-                            <?php if (!empty($offers)) { ?>
+                            <h3>Campanii trimise</h3><br>
+                            <?php if (!empty($newsletters)) { ?>
                                 <table class="table table-responsive m-b-none text-sm">
                                     <thead>
                                     <tr>
                                         <th></th>
-                                        <th>Titlu</th>
-                                        <th width="599">Descriere</th>
-                                        <th>Produse</th>
-                                        <th>Pret</th>
-                                        <th width="120">Data adaugata</th>
-                                        <th width="100"></th>
+                                        <th>Subiect</th>
+                                        <th width="500">Mesaj</th>
+                                        <th>Catre</th>
+                                        <th width="120">Data trimisa</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <?php foreach ($offers as $offer) { ?>
+                                    <?php foreach ($newsletters as $newsletter) { ?>
                                         <tr>
-                                            <td><?php echo !empty($offer->image) ? '<img height="25" src="' . site_url('img.php?src=uploads/' . $offer->image) . '">' : ''; ?></td>
-                                            <td><?php echo $offer->title_romanian; ?></td>
-                                            <td><?php echo character_limiter($offer->content_romanian, 300); ?></td>
-                                            <td><?php echo count($offer->products); ?></td>
-                                            <td><?php echo $offer->price; ?></td>
-                                            <td><?php echo date('d M Y', strtotime($offer->date)); ?></td>
-                                            <td><a href="<?php echo site_url('admin/offers/edit/' . $offer->id); ?>"
-                                                   class="btn btn-xs btn-info">Editeaza</a></td>
+                                            <td><?php echo !empty($newsletter->image) ? '<img height="25" src="' . site_url('img.php?src=uploads/' . $newsletter->image) . '">' : ''; ?></td>
+                                            <td><?php echo $newsletter->subject_romanian; ?></td>
+                                            <td><?php echo character_limiter($newsletter->content_romanian, 300); ?></td>
+                                            <td><?php echo !empty($newsletter->subscribers) && $newsletter->subscribers != 1 ? $newsletter->subscribers. ' persoane' : $newsletter->subscribers.' persoana'; ?></td>
+                                            <td><?php echo date('d.m.Y', strtotime($newsletter->date)); ?></td>
                                         </tr>
                                     <?php } ?>
                                     </tbody>

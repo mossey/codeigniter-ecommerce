@@ -19,6 +19,8 @@ class Newsletter_model extends CI_Model {
 
     public function get_data()
     {
+        $this->db->order_by("date", "desc");
+
         $query = $this->db->get($this->table);
 
         return $query->result();

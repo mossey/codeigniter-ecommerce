@@ -39,7 +39,7 @@ class Pages extends Admin {
     {
         if (!empty($_POST) && !empty($_POST['id'])) {
             $this->page_model->update();
-            $this->session->set_flashdata('success', 'Pagina a fost editat cu succes.');
+            $this->session->set_flashdata('success', 'Pagina a fost editata cu succes.');
         } elseif (!empty($_POST)) {
             $this->page_model->insert();
             $this->session->set_flashdata('success', 'Pagina a fost adaugat cu succes.');

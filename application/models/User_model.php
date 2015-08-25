@@ -11,7 +11,7 @@ class User_model extends CI_Model {
     public $admin = 0;
     public $date;
 
-    private $table = 'users';
+    const TABLE = 'users';
 
     public function __construct()
     {
@@ -20,14 +20,22 @@ class User_model extends CI_Model {
 
     public function get_data()
     {
-        $query = $this->db->get($this->table);
+        $query = $this->db->get($this::TABLE);
 
         return $query->result();
     }
 
+    public function unsubscribe($id, $token) {
+        $user = $this->get_data_by_id($id);
+
+        if (sha1($user->password).sha1($user->date) == $token) {
+            $this->db->update($this::TABLE, ['subscribed' => 0], "id = " . $id);
+        }
+    }
+
     public function get_data_by_ids_array($array)
     {
-        $query = $this->db->where_in('id', $array)->get($this->table);
+        $query = $this->db->where_in('id', $array)->get($this::TABLE);
 
         return $query->result();
     }
@@ -37,7 +45,7 @@ class User_model extends CI_Model {
         $user_id = $this->session->userdata('user_id');
 
         if (!empty($user_id)) {
-            $query = $this->db->get_where($this->table, ['id' => $user_id]);
+            $query = $this->db->get_where($this::TABLE, ['id' => $user_id]);
 
             $data = $query->result();
 
@@ -49,7 +57,7 @@ class User_model extends CI_Model {
 
     public function get_data_by_id($id)
     {
-        $query = $this->db->get_where($this->table, ['id' => $id]);
+        $query = $this->db->get_where($this::TABLE, ['id' => $id]);
 
         $data = $query->result();
 
@@ -59,7 +67,7 @@ class User_model extends CI_Model {
     public function get_admin()
     {
         if (!empty($_POST)) {
-            $query = $this->db->get_where($this->table, ['admin' => 1, 'email' => $_POST['email'], 'password' => sha1($_POST['password'])]);
+            $query = $this->db->get_where($this::TABLE, ['admin' => 1, 'email' => $_POST['email'], 'password' => sha1($_POST['password'])]);
 
             $data = $query->result();
 
@@ -71,7 +79,7 @@ class User_model extends CI_Model {
 
     public function login()
     {
-        $query = $this->db->get_where($this->table, ['email' => $_POST['email'], 'password' => sha1($_POST['password'])]);
+        $query = $this->db->get_where($this::TABLE, ['email' => $_POST['email'], 'password' => sha1($_POST['password'])]);
         $result = $query->result();
 
         $user = end($result);
@@ -84,7 +92,7 @@ class User_model extends CI_Model {
 
     public function register()
     {
-        $query = $this->db->get_where($this->table, ['email' => $_POST['email']]);
+        $query = $this->db->get_where($this::TABLE, ['email' => $_POST['email']]);
         $result = $query->result();
 
         if (!empty($result)) {
@@ -97,7 +105,7 @@ class User_model extends CI_Model {
             $this->address          = $_POST['address'];
             $this->ip               = $this->input->ip_address();
 
-            if ($this->db->insert($this->table, $this)) {
+            if ($this->db->insert($this::TABLE, $this)) {
                 $this->session->set_userdata('user_id', $this->id);
 
                 return true;

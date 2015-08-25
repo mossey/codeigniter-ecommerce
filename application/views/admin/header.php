@@ -7,7 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
     <link rel="stylesheet" href="/assets/admin/css/app.v2.css" type="text/css"/>
     <link rel="stylesheet" href="/assets/admin/css/font.css" type="text/css" cache="false"/>
+    <link rel="stylesheet" href="/assets/css/pickaday.css" type="text/css" cache="false"/>
     <script src="/assets/js/jquery.js"></script>
+    <script src="/assets/js/moment.js"></script>
+    <script src="/assets/js/pickaday.js"></script>
 </head>
 <body>
 <section class="hbox stretch">

@@ -41,7 +41,7 @@ $(document).ready(function(){
 	var frm = $('.products-form');
 	frm.submit(function (ev) {
 		$('.products-inside').css('opacity', 0.2);
-		$('.loader10').hide().fadeIn();
+		$('.loader10').fadeIn();
 		$.ajax({
 			type: frm.attr('method'),
 			url: frm.attr('action'),
@@ -58,11 +58,11 @@ $(document).ready(function(){
 		return false;
 	});
 
-	$('.filters input').change(function(){
+	$(document).on('click change keyup', '.filters input', function(){
 		$(this).parents('form').submit();
 	});
 
-	$('.filter-selects select').change(function(){
+	$(document).on('change', '.filter-selects select', function(){
 		$(this).parents('form').submit();
 	});
 

@@ -46,5 +46,6 @@ class Frontend extends CI_Controller {
         $this->data['pages'] = $this->page_model->get_data();
         $this->data['user'] = $this->user_model->get_user();
         $this->data['footer_pages'] = $this->product_model->get_footer_pages();
+        $this->data['offers'] = $this->offer_model->get_available_offers();
     }
 }

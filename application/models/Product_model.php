@@ -140,8 +140,7 @@ class Product_model extends CI_Model {
         return end($data);
     }
 
-    public function record_count($filters, $category_id = null) {
-        $this->db->select('p.*');
+    public function record_count($filters = array(), $category_id = null) {
 
         if (!empty($filters)) {
             $this->db->join(Filter_relation_model::TABLE.' fr', 'p.id = fr.product_id');
@@ -150,13 +149,10 @@ class Product_model extends CI_Model {
         }
 
         if (!empty($category_id)) {
-            $count_result = $this->db->where('p.category', $category_id)->get($this::TABLE);
-        } else {
-            $count_result = $this->db->get($this::TABLE.' p');
+            $this->db->where('p.category', $category_id);
         }
 
-        die($count_result);
-        return $count_result;
+        return count($this->db->get($this::TABLE.' p')->result());
     }
 
     public function fetch_products($limit, $start, $filters = array(), $sort_by = false, $query = false, $category_id = null) {

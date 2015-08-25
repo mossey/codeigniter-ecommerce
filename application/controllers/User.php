@@ -9,6 +9,13 @@ class User extends Frontend
         parent::__construct();
     }
 
+    public function unsubscribe($id, $token)
+    {
+        $this->user_model->unsubscribe($id, $token);
+        $this->session->set_flashdata('success', 'Ati fost dezabonat cu success.');
+        redirect('/');
+    }
+
     public function profile()
     {
         $this->load->view('partials/header', $this->data);

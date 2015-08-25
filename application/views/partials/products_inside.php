@@ -4,4 +4,8 @@
     <?php } ?>
     <div class="clearfix"></div>
     <?php echo !empty($links) ? $links : ''; ?>
+<?php } else { ?>
+    <div class="col-md-12">
+        <p>Nu sunt produse pentru cautarea dvs.</p>
+    </div>
 <?php } ?>
