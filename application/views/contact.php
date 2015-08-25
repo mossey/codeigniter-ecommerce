@@ -34,7 +34,7 @@
             </div>
             <div class="col-sm-4">
                 <div class="contact-info">
-                    <h2 class="title text-center">Date de contact</h2>
+                    <h2 class="title text-center"><?php echo lang('msg_contact_data'); ?></h2>
                     <address>
                         <?php if (!empty($general->address)) { ?>
                             <p><?php echo lang('msg_address'); ?>: <span><?php echo $general->address; ?></span></p>
