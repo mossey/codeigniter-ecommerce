@@ -1,7 +1,7 @@
-AuthName "Restricted Area"
-AuthType Basic
-AuthUserFile /home/freshmar/public_html/.htpasswd
-require valid-user
+#AuthName "Restricted Area"
+#AuthType Basic
+#AuthUserFile /home/freshmar/public_html/.htpasswd
+#require valid-user
 
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
