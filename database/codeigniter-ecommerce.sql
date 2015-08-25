@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Generation Time: Aug 07, 2015 at 06:00 PM
+-- Generation Time: Aug 25, 2015 at 01:21 PM
 -- Server version: 5.5.34
 -- PHP Version: 5.5.10
 
@@ -25,10 +25,11 @@ USE `codeigniter-ecommerce`;
 DROP TABLE IF EXISTS `categories`;
 CREATE TABLE `categories` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
+  `name_romanian` varchar(255) NOT NULL,
+  `name_russian` varchar(255) NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 -- --------------------------------------------------------
 
@@ -47,7 +48,7 @@ CREATE TABLE `comments` (
   `user_id` int(11) DEFAULT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -62,7 +63,7 @@ CREATE TABLE `filters` (
   `name` varchar(25) NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 -- --------------------------------------------------------
 
@@ -76,7 +77,7 @@ CREATE TABLE `filters_relations` (
   `filter_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=24 ;
 
 -- --------------------------------------------------------
 
@@ -90,7 +91,7 @@ CREATE TABLE `filter_categories` (
   `name` varchar(255) NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 -- --------------------------------------------------------
 
@@ -101,10 +102,31 @@ CREATE TABLE `filter_categories` (
 DROP TABLE IF EXISTS `general`;
 CREATE TABLE `general` (
   `key` varchar(255) NOT NULL,
-  `value` text NOT NULL,
+  `value` mediumtext NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`key`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `newsletter`
+--
+
+DROP TABLE IF EXISTS `newsletter`;
+CREATE TABLE `newsletter` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `subject_romanian` varchar(255) NOT NULL,
+  `subject_russian` varchar(255) NOT NULL,
+  `content_romanian` text NOT NULL,
+  `content_russian` text NOT NULL,
+  `subscribers` int(11) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `received` int(11) NOT NULL,
+  `status` int(1) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 -- --------------------------------------------------------
 
@@ -129,12 +151,15 @@ CREATE TABLE `newsletters` (
 DROP TABLE IF EXISTS `offers`;
 CREATE TABLE `offers` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `until_date` date NOT NULL,
   `products` text NOT NULL,
-  `description` text,
+  `content_romanian` text,
+  `content_russian` text NOT NULL,
   `price` varchar(255) NOT NULL,
-  `date` int(11) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 -- --------------------------------------------------------
 
@@ -146,11 +171,11 @@ DROP TABLE IF EXISTS `orders`;
 CREATE TABLE `orders` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
-  `order_array` text NOT NULL,
+  `order_array` mediumtext NOT NULL,
   `processed` tinyint(1) NOT NULL DEFAULT '0',
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -161,13 +186,15 @@ CREATE TABLE `orders` (
 DROP TABLE IF EXISTS `pages`;
 CREATE TABLE `pages` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) NOT NULL,
-  `content` text NOT NULL,
+  `title_romanian` varchar(255) NOT NULL,
+  `title_russian` mediumtext NOT NULL,
+  `content_romanian` mediumtext NOT NULL,
+  `content_russian` mediumtext NOT NULL,
   `image` varchar(255) NOT NULL,
   `order` int(11) DEFAULT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
 
@@ -178,16 +205,21 @@ CREATE TABLE `pages` (
 DROP TABLE IF EXISTS `products`;
 CREATE TABLE `products` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `description` text,
+  `name_romanian` varchar(255) NOT NULL,
+  `name_russian` varchar(255) NOT NULL,
+  `description_romanian` mediumtext,
+  `description_russian` mediumtext NOT NULL,
   `category` int(11) NOT NULL,
-  `price` varchar(255) NOT NULL,
+  `price` double NOT NULL,
   `image` varchar(255) DEFAULT NULL,
   `active` int(11) NOT NULL DEFAULT '1',
+  `special_content_romanian` mediumtext NOT NULL,
+  `special_content_russian` mediumtext NOT NULL,
+  `special_price` double NOT NULL,
   `views` int(11) DEFAULT '0',
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 -- --------------------------------------------------------
 
@@ -198,6 +230,7 @@ CREATE TABLE `products` (
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `language` enum('romanian','russian') NOT NULL DEFAULT 'romanian',
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
@@ -205,6 +238,7 @@ CREATE TABLE `users` (
   `address` varchar(255) NOT NULL,
   `ip` varchar(255) NOT NULL,
   `admin` tinyint(1) DEFAULT '0',
+  `subscribed` int(11) NOT NULL DEFAULT '1',
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
