@@ -11,6 +11,7 @@
     <script src="/assets/js/jquery.js"></script>
     <script src="/assets/js/moment.js"></script>
     <script src="/assets/js/pickaday.js"></script>
+    <link rel="icon" type="image/png" href="/logo_admin.png" />
 </head>
 <body>
 <section class="hbox stretch">

@@ -1,12 +1,12 @@
 <?php
 class User_model extends CI_Model {
 
-    public $id;
     public $name;
     public $email;
     public $password;
     public $telephone;
     public $address;
+    public $subscribed;
     public $ip;
     public $admin = 0;
     public $date;
@@ -112,6 +112,36 @@ class User_model extends CI_Model {
             } else {
                 return false;
             }
+        }
+    }
+
+    public function update($id = null)
+    {
+        $id = !empty($id) ? $id : $_POST['id'];
+
+        $result = $this->get_data_by_id($id);
+
+        if (empty($result)) {
+            return false;
+        } else {
+            $obj = clone $result;
+            $obj->name             = $_POST['name'];
+            $obj->email            = $_POST['email'];
+
+            if (
+                !empty($_POST['old_password']) && !empty($_POST['new_password']) && !empty($_POST['confirm_new_password']) &&
+                $result->password == sha1($_POST['old_password']) &&
+                $_POST['new_password'] == $_POST['confirm_new_password']
+            ) {
+                $obj->password = sha1($_POST['new_password']);
+            }
+
+            $obj->telephone        = $_POST['telephone'];
+            $obj->address          = $_POST['address'];
+            $obj->subscribed       = !empty($_POST['subscribed']) ? 1 : 0;
+            $obj->ip               = $this->input->ip_address();
+
+            return $this->db->update($this::TABLE, $obj, array('id' => $result->id));
         }
     }
 }

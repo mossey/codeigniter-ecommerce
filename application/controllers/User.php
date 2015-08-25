@@ -23,6 +23,18 @@ class User extends Frontend
         $this->load->view('partials/footer', $this->data);
     }
 
+    public function save()
+    {
+        if (!empty($_POST)) {
+            if ($this->user_model->update($this->data['user']->id)) {
+                $this->session->set_flashdata('success', 'Date dvs au fost editate cu succes.');
+            } else {
+                $this->session->set_flashdata('error', 'Date dvs nu au putut fi salvate. Va rugam contactati-ne pe info@freshmarket.md');
+            }
+        }
+        redirect('user/profile');
+    }
+
     public function comment()
     {
         if (!empty($_POST)) {
