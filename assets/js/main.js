@@ -182,10 +182,24 @@ $(document).ready(function(){
 		total();
 	});
 	$('.cart_quantity_delete').click(function () {
-		$(this).parents('tr').remove();
-		$('.removed-from-cart').fadeIn();
+		var $tr = $(this).parents('tr'),
+			id = $tr.data('id');
 
-		remove_messages();
+		var products = $.cookie('products');
+		products = products ? products.split(',') : [];
+
+		$.each(products, function(m, n){
+			console.log(n);
+		});
+
+		products = products.unique();
+
+		$('.cart-items').text('(' + products.length + ')');
+
+		$.cookie('products', products);
+
+		$tr.remove();
+		$('.removed-from-cart').fadeIn();
 	});
 	total();
 });

@@ -35,7 +35,7 @@
                         <?php foreach ($products as $product) { ?>
                             <?php $product->price = !empty($product->special_price) ? $product->special_price : $product->price; ?>
 
-                            <tr data-price="<?php echo $product->price; ?>">
+                            <tr data-price="<?php echo $product->price; ?>" data-id="<?php echo $product->id; ?>">
                                 <td class="cart_product image-td">
                                     <a href="<?php echo site_url(url_title($product->{'name_'.$language}) . '-' . $product->id); ?>"><img
                                             src="<?php echo site_url('img.php?src=uploads/' . $product->image . '&h=100'); ?>" alt=""></a>
